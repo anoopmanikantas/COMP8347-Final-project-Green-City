@@ -14,12 +14,13 @@ def login_signup(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'myapp/login_signup.html', {'form': form})
+    return render(request, 'm/login_signup.html', {'form': form})
 
 def home(request):
-    return render(request, 'myapp/home.html')
+    user_name = "uanme"
+    return render(request, 'm/home.html', {'user_name': user_name})
 
 def admin_page(request):
     if not request.user.is_staff:
         return redirect('home')
-    return render(request, 'myapp/admin_page.html')
+    return render(request, 'admin_page.html')
