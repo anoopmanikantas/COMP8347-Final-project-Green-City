@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from myapp import views
 
@@ -8,4 +9,4 @@ urlpatterns = [
     path('building_permit_details/', views.building_permit_details, name='building_permit_details'),
     path('status_details/', views.status_details, name='status_details'),
     # Add other paths as needed
-]
+] + staticfiles_urlpatterns()
