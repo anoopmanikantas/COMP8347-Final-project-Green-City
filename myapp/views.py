@@ -1,18 +1,22 @@
 from django.shortcuts import render
 
+
 def home(request):
-    return render(request, 'm/home.html')
+    return render(request, 'home/home.html')
+
 
 def dashboard(request):
-    return render(request, 'm/dashboard.html')
+    return render(request, 'dashboard/dashboard.html')
+
 
 def user_profile(request):
-    return render(request, 'm/user_profile.html')
+    return render(request, 'user_profile/user_profile.html')
+
 
 def building_permit_details(request):
-    return render(request, 'm/building_permit_details.html')
+    return render(request, 'building_permit/building_permit_details.html')
+
 
 def status_details(request):
-    return render(request, 'm/status.html')
+    return render(request, 'status/status.html')
 
-# Add other views as needed for your application
