@@ -1,26 +1,18 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-
-def login_signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'm/login_signup.html', {'form': form})
+from django.shortcuts import render
 
 def home(request):
-    user_name = "uanme"
-    return render(request, 'm/home.html', {'user_name': user_name})
+    return render(request, 'm/home.html')
 
-def admin_page(request):
-    if not request.user.is_staff:
-        return redirect('home')
-    return render(request, 'admin_page.html')
+def dashboard(request):
+    return render(request, 'm/dashboard.html')
+
+def user_profile(request):
+    return render(request, 'm/user_profile.html')
+
+def building_permit_details(request):
+    return render(request, 'm/building_permit_details.html')
+
+def status_details(request):
+    return render(request, 'm/status.html')
+
+# Add other views as needed for your application

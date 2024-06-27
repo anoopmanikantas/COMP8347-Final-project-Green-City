@@ -1,2 +1,9 @@
-<h1>Home</h1>
-<h2>Username{{ user_name }}</h2>
+{% extends 'm/base.html' %}
+
+{% block title %}Home - My Website{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Home Page</h1>
+    <p>This is the landing page content.</p>
+    <p><a href="{% url 'dashboard' %}">Go to Dashboard</a></p>
+{% endblock %}
