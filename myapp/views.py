@@ -1,26 +1,22 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render
 
-def login_signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'm/login_signup.html', {'form': form})
 
 def home(request):
-    user_name = "uanme"
-    return render(request, 'm/home.html', {'user_name': user_name})
+    return render(request, 'home/home.html')
 
-def admin_page(request):
-    if not request.user.is_staff:
-        return redirect('home')
-    return render(request, 'admin_page.html')
+
+def dashboard(request):
+    return render(request, 'dashboard/dashboard.html')
+
+
+def user_profile(request):
+    return render(request, 'user_profile/user_profile.html')
+
+
+def building_permit_details(request):
+    return render(request, 'building_permit/building_permit_details.html')
+
+
+def status_details(request):
+    return render(request, 'status/status.html')
+
