@@ -20,6 +20,8 @@ def building_permit_details(request):
 def status_details(request):
     return render(request, 'status/status.html')
 
+def adminpage(request):
+    return render(request, 'admin/admin_page.html')
 
 def privacy_policy(request):
     return render(request, 'privacy_policy/privacy_policy.html')
