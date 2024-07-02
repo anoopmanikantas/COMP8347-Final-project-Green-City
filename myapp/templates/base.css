@@ -1,6 +1,6 @@
 /* Body and general styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
     background-color: #f4f4f4; /* Light gray background */
     margin: 0;
     padding: 0;
@@ -10,13 +10,22 @@ body {
 .navbar {
     background-color: #4CAF50; /* Green navbar background */
     overflow: hidden;
+    display: flex;
+    /*flex-direction: row;*/
+    align-items: center;
+}
+
+.navbar .nav-links {
+    display: flex;
+    /*justify-content: space-between;*/
+    flex-grow: 1;
 }
 
 .navbar a {
-    float: left;
-    display: block;
+    /*float: left;*/
+
     color: white;
-    text-align: center;
+    /*text-align: center;*/
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
@@ -29,4 +38,14 @@ body {
 /* Content area styling */
 .content {
     padding: 20px;
+}
+
+.profile img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+.profile {
+    margin-left: auto;
 }
