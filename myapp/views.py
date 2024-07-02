@@ -6,7 +6,7 @@ def home(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard/dashboard.html')
+    return render(request, 'home/dashboard/dashboard.html')
 
 
 def user_profile(request):
@@ -19,4 +19,12 @@ def building_permit_details(request):
 
 def status_details(request):
     return render(request, 'status/status.html')
+
+
+def privacy_policy(request):
+    return render(request, 'privacy_policy/privacy_policy.html')
+
+
+def about(request):
+    return render(request, 'about/about.html')
 
