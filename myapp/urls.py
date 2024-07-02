@@ -13,5 +13,6 @@ urlpatterns = [
     path('adminpage/', views.adminpage, name = 'adminpage'),
     path('about/', views.about, name='about'),
     path('privacy/', views.privacy_policy, name='privacy_policy'),
+    path('register/',views.register, name='register'),
     # Add other paths as needed
 ] + staticfiles_urlpatterns()
