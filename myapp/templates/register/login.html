@@ -11,18 +11,19 @@
     <div class="container-fluid vh-100 d-flex align-items-center">
         <div class="row flex-fill">
             <div class="col-lg-6 col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-green p-5">
-                <h1>New here ?</h1>
+                <h1>New here?</h1>
                 <p class="text-center">We at Leaf Now organize tree plantations projects across several cities. Also we have a marketplace to buy, sell or donate online vegetable seeds, fruit seeds, grow bags and other home/terrace gardening products.</p>
-                <button class="btn btn-light btn-lg mt-3">Sign Up</button>
+                <p>Don't have an account?</p>
+                <button class="btn btn-light btn-lg mt-3" onclick="window.location.href='/signup'">Sign Up</button>
             </div>
             <div class="col-lg-6 col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-5">
                 <h2>Sign in</h2>
-                <form class="w-75">
+                <form class="w-75" action="/login" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Username" name="username" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" name="password" required>
                     </div>
                     <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
                 </form>

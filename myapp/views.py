@@ -30,6 +30,8 @@ def privacy_policy(request):
 def about(request):
     return render(request, 'about/about.html')
 
-def register(request):
+def login(request):
     return render(request, 'register/login.html')
 
+def signup(request):
+    return render(request, 'register/signup.html')
