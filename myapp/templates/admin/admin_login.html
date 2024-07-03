@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Developer Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin_login.css' %}">
 </head>
 <body>
-
+    <div class="container">
+        <h2>Developer Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
 </html>
