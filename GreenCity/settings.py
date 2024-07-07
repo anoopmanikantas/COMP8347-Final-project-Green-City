@@ -54,7 +54,7 @@ ROOT_URLCONF = 'GreenCity.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r"myapp\templates"],
+        'DIRS': [r"myapp/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
