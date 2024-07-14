@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Abou Us{% endblock %}
 
-</body>
-</html>
+
+{% block content %}
+     <link rel="stylesheet" href="{% static 'about/about.css' %}">
+    <div class="about-us-section">
+        <h2>About Us</h2>
+        <h3>Together we can save the planet</h3>
+        <p>
+            Leaf Now spearheads a variety of initiatives including research, education, sensitisation and advocacy around the importance of environmental preservation and tree plantation. We at Leaf Now organize tree plantations projects across several cities. We pro-actively engage in identifying potential areas for plantation, keeping in mind the biodiversity and ecological milieu of the local area. We try ensuring that the local communities reap multifold benefits; besides restoring the green cover, the trees also provide them with fruits, flowers, leaves etc commonly used in the community life.
+        </p>
+        <p>
+            Our mission is to sensitise and empower people to give back to nature and live in an environment conducive to their health and well-being. Leaf Now inspires citizens to spare just a few hours on weekends and work towards making their cities, and their lives greener. Our long term plans entail taking tree plantation drives to more number of cities and inducting many more tree enthusiasts, particularly corporate teams, to be able to amplify both scale and impact of our efforts.
+        </p>
+        <p>
+            Interested in being a part of our mission? Leaf Now to live tomorrow!!!
+        </p>
+    </div>
+    <div class="seed_link-section">
+        <h2>SEED LINK</h2>
+        <h3>Our Official Market Place For Plants</h3>
+        <p>
+            SeedLink is our own e-commerce market place to buy or donate online vegetable seeds, fruit seeds, grow bags and other home/terrace gardening products.
+        </p>
+        <p>
+            Our main strength is providing the Non-Hybrid (open pollinated)/desi vegetable seeds in kitchen garden packing. We don't have minimum order quantity terms, even single seed you ordered will be delivered through India with minimal shipping charges. Our main motive is everyone should grow the organic vegetables at their home and feel the joy of eating your grown food have an healthy life. We also supply the seeds in bulk and deliver anywhere in India.
+        </p>
+        <button onclick="window.location.href='store.html'">Visit Store</button>
+    </div>
+{% endblock %}
