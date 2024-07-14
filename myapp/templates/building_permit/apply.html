@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}Building Permit Application{% endblock %}
-
+{% load static %}
 {% block content %}
-    <h1>Building Permit Application</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+<div class="container">
+    <div class="form-container">
+        <img src="{% static 'building_permit/s960_Untitled_design__10_.png' %}" alt="Showcase Image" class="showcase-image">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="image-container">
+        <!-- This container can be used for additional content if needed -->
+    </div>
+</div>
 {% endblock %}

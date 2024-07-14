@@ -4,14 +4,45 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    overflow: hidden;
 }
 
-/* Form styling */
-form {
+/* Container styling */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 30px; /* Adjust width as needed */
+    max-width: 12px; /* Adjust max-width as needed */
+    height: 8vh; /* Adjust height as needed */
     background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+/* Form container styling */
+.form-container {
+    width: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 form p {
@@ -25,7 +56,7 @@ form label {
 }
 
 form input, form select, form button {
-    width: 100%;
+    width: 10px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -41,4 +72,20 @@ form button {
 
 form button:hover {
     background-color: #45a049;
+}
+
+/* Image container styling */
+.image-container {
+    width: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.showcase-image {
+    max-width: 50px; /* Adjust the size of the image */
+    max-height: 50px; /* Ensure the image fits within its container */
+    object-fit: none;
+    border-radius: 5px;
 }
