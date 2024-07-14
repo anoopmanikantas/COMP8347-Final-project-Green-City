@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
+from .forms import BuildingPermitForm
+from .models import BuildingPermit
 
 
 def home(request):
@@ -47,3 +49,30 @@ def login(request):
 
 def signup(request):
     return render(request, 'register/signup.html')
+
+
+def calculate_trees(area, floors):
+    area_map = {
+        '0-0.3': 1,
+        '0.3-0.5': 2,
+        '0.5-0.7': 3,
+        '0.7+': 4,
+    }
+    floors_map = {
+        '1-3': 1,
+        '4-6': 2,
+        '7+': 3,
+    }
+    return area_map[area] * floors_map[floors]
+
+def building_permit_application(request):
+    if request.method == 'POST':
+        form = BuildingPermitForm(request.POST, request.FILES)
+        if form.is_valid():
+            permit = form.save(commit=False)
+            permit.trees_required = calculate_trees(permit.area, permit.floors)
+            permit.save()
+            return render(request, 'building_permit/result.html', {'trees_required': permit.trees_required})
+    else:
+        form = BuildingPermitForm()
+    return render(request, 'building_permit/apply.html', {'form': form})
