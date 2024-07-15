@@ -1,11 +1,23 @@
 # models.py
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+
 
 class AdminUser(AbstractUser):
     contact_number = models.CharField(max_length=50, blank=True, null=True)
 
-    def __str__(self):
+    groups = models.ManyToManyField(
+        Group,
+        related_name='adminuser_set',
+        blank=True
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='adminuser_permissions_set',
+        blank=True
+    )
+
+    def _str_(self):
         return self.username
 
 
@@ -36,4 +48,3 @@ class BuildingPermit(models.Model):
 
     def __str__(self):
         return f"Building Permit for {self.name}"
-

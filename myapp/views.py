@@ -1,5 +1,6 @@
+from django.contrib.auth import authenticate
 from django.shortcuts import render , redirect
-from .forms import BuildingPermitForm
+from .forms import BuildingPermitForm, AdminLoginForm, AdminSignupForm
 from .models import BuildingPermit
 
 
@@ -28,11 +29,28 @@ def adminpage(request):
 
 
 def adminlogin(request):
-    return render(request, 'admin/admin_login.html')
+    if request.method == 'POST':
+        form = AdminLoginForm(data=request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
+            if user is not None:
+                login(request, user)
+                return redirect('adminpage')
+    else:
+        form = AdminLoginForm()
+    return render(request, 'admin/admin_login.html', {'form': form})
 
 
 def adminsignup(request):
-    return render(request, 'admin/admin_signup.html')
+    if request.method == 'POST':
+        form = AdminSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('adminlogin')
+    else:
+        form = AdminSignupForm()
+    return render(request, 'admin/admin_signup.html', {'form': form})
 
 
 def privacy_policy(request):
