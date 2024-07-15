@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import AdminUser,BuildingPermit
+from .models import AdminUser, BuildingPermit, CustomUser
 
 
 class AdminSignupForm(UserCreationForm):
@@ -18,6 +18,21 @@ class AdminSignupForm(UserCreationForm):
 class AdminLoginForm(AuthenticationForm):
     username = forms.CharField(max_length=254, required=True)
     password = forms.CharField(label='Password', strip=False, widget=forms.PasswordInput)
+
+
+class CustomUserCreationForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=True, help_text='Required')
+    last_name = forms.CharField(max_length=30, required=True, help_text='Required')
+    email = forms.EmailField(max_length=254, required=True, help_text='Required')
+    contact_number = forms.CharField(max_length=15, required=True, help_text='Required')
+
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = ('username', 'first_name', 'last_name', 'email', 'contact_number', 'password1', 'password2')
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(max_length=254, required=True, help_text='Required')
+    password = forms.CharField(widget=forms.PasswordInput, required=True, help_text='Required')
 
 
 class BuildingPermitForm(forms.ModelForm):

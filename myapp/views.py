@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.shortcuts import render , redirect
-from .forms import BuildingPermitForm, AdminLoginForm, AdminSignupForm
+from .forms import BuildingPermitForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
 from .models import BuildingPermit
 
 
@@ -62,11 +63,37 @@ def about(request):
 
 
 def login(request):
-    return render(request, 'register/login.html')
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f'You are now logged in as {username}.')
+                return redirect('home')
+            else:
+                messages.error(request, 'Invalid username or password.')
+        else:
+            messages.error(request, 'Invalid username or password.')
+    else:
+        form = CustomAuthenticationForm()
+    return render(request, 'register/login.html', {'form': form})
 
 
 def signup(request):
-    return render(request, 'register/signup.html')
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created successfully!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register/signup.html', {'form': form})
 
 
 def calculate_trees(area, floors):
