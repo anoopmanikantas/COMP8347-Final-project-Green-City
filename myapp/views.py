@@ -36,7 +36,7 @@ def adminlogin(request):
             user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
             if user is not None:
                 login(request, user)
-                return redirect('adminpage')
+                return redirect('myapp:adminpage')
     else:
         form = AdminLoginForm()
     return render(request, 'admin/admin_login.html', {'form': form})
@@ -48,7 +48,7 @@ def adminsignup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('adminlogin')
+            return redirect('myapp:adminlogin')
     else:
         form = AdminSignupForm()
     return render(request, 'admin/admin_signup.html', {'form': form})
@@ -72,7 +72,7 @@ def login(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f'You are now logged in as {username}.')
-                return redirect('home')
+                return redirect('myapp:home')
             else:
                 messages.error(request, 'Invalid username or password.')
         else:
@@ -87,8 +87,8 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account created successfully!')
-            return redirect('login')
+            # messages.success(request, 'Account created successfully!')
+            return redirect('myapp:login')
         else:
             messages.error(request, 'Please correct the error below.')
     else:

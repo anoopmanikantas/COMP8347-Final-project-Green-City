@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-6 col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-5">
                 <h2>Sign in</h2>
-                <form class="w-75" action="/login" method="POST">
+                <form class="w-75" method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
