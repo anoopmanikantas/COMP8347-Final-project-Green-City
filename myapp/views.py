@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.shortcuts import render , redirect
 from .forms import BuildingPermitForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
@@ -90,7 +91,8 @@ def signup(request):
             # messages.success(request, 'Account created successfully!')
             return redirect('myapp:login')
         else:
-            messages.error(request, 'Please correct the error below.')
+            error_messages = form.errors.as_json()
+            return HttpResponse(f'Please correct the error below: {error_messages}')
     else:
         form = CustomUserCreationForm()
     return render(request, 'register/signup.html', {'form': form})

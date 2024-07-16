@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(blank=True, max_length=50, null=True)),
                 ('last_name', models.CharField(blank=True, max_length=50, null=True)),
                 ('email', models.EmailField(max_length=254, unique=True)),
-                ('phone', models.CharField(blank=True, max_length=10, null=True)),
+                ('contact_number', models.CharField(blank=True, max_length=10, null=True)),
                 ('groups', models.ManyToManyField(blank=True, related_name='customuser_set', to='auth.group')),
                 ('user_permissions', models.ManyToManyField(blank=True, related_name='customuser_permissions_set', to='auth.permission')),
             ],
