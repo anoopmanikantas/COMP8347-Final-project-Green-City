@@ -47,7 +47,7 @@ def adminsignup(request):
         form = AdminSignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            # login(request, user)
             return redirect('myapp:adminlogin')
     else:
         form = AdminSignupForm()
