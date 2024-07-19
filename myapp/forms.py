@@ -1,18 +1,17 @@
 # forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import AdminUser, BuildingPermit, CustomUser
+from .models import BuildingPermit, CustomUser
 
 
 class AdminSignupForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
-    contact_number = forms.CharField(max_length=15, required=True)
 
     class Meta:
-        model = AdminUser
-        fields = ('first_name', 'last_name', 'email', 'contact_number', 'username', 'password1', 'password2')
+        model = CustomUser
+        fields = ('username', 'first_name', 'last_name', 'email', 'phone', 'password1', 'password2')
 
 
 class AdminLoginForm(AuthenticationForm):
