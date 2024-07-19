@@ -1,0 +1,44 @@
+body {
+    background: linear-gradient(to bottom, #ffffff, #014a2c);
+}
+
+.welcome {
+    text-align: center;
+}
+
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows the cards to wrap to the next line if the container width is too small */
+}
+
+.card1, .card2 {
+    width: calc(90% - 32px);
+    /*height: auto;*/
+    margin: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    /*border: 2px;*/
+    background-size: cover;
+    background-position: center;
+
+    height: 400px;
+}
+
+.card1 {
+    background-image: url("Trees.jpg");
+}
+
+.card2 {
+    background-image: url("Trees-Dark.jpg");
+}
+
+.card1 h2, .card2 h2 {
+    color: #ffffff;
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+
+

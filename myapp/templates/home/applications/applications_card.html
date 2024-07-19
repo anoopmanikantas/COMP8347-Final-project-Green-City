@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/applications/applications.css' %}">
+
+<h2>Applications</h2>
+
+{% if permits == 0 %}
+    <a href="" class="-create-new-application-button">Create New Application</a>
+
+{% else %}
+
+    <h3>Search Applications</h3>
+
+    <div class="search-container">
+        <form id="searchForm" method="GET" action="{% url 'myapp:home' %}">
+            {{ form.query }}
+            <button type="submit" class="search-form-submit-button">Search</button>
+        </form>
+    </div>
+    {% if result_count != 0 %}
+        <div class="search-results">
+            {#                display utmost 4 applications, and more than that add a view more button#}
+
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Application Reference Number</th>
+                    <th>Status</th>
+                </tr>
+                {% for result in results %}
+                    <div class="result-item">
+                        <tr>
+                            <td>{{ result.name }}</td>
+                            <td>Prop 2</td> {# TODO: This must be replaced with result property application number #}
+                            <td>Prop 3</td> {# TODO: This must be replaced with result property application status #}
+                        </tr>
+                    </div>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+    <a href="" class="new-application-button">New Application</a>
+{% endif %}

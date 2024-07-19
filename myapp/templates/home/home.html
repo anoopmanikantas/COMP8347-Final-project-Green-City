@@ -2,8 +2,39 @@
 
 {% block title %}Home - My Website{% endblock %}
 
+{% load static %}
+
 {% block content %}
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the landing page content.</p>
-    <p><a href="{% url "myapp:dashboard" %}">Go to Dashboard</a></p>
+    <link rel="stylesheet" href="{% static "home/home.css" %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <h1 class="welcome">Welcome to our Green City Community</h1>
+    <p class="welcome">At Community, we believe in the power of unity and the impact each one of us can make to help our planet. We are a group of nature enthusiasts committed to promoting greenery and making our world a greener place.</p>
+    <div class="card-container">
+        <div class="card1">
+            <h2>Dashboard</h2>
+{#            show number of applications submitted, approved, pending#}
+        </div>
+    
+        <div class="card2">
+            {% include 'home/applications/applications_card.html' %}
+            
+        </div>
+    </div>
+    
+    <script>
+    $(document).ready(function () {
+        $('#searchForm').on('submit', function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('.card2').html(data);
+                }
+            });
+        });
+    });
+    </script>
 {% endblock %}

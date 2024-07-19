@@ -28,3 +28,20 @@ class BuildingPermitForm(forms.ModelForm):
             'floors': forms.Select(choices=BuildingPermit.FLOORS_CHOICES),
         }
 
+
+class SearchForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        # This is to remove the ":" symbol from the end of the label
+        kwargs.setdefault('label_suffix', '')
+        super(SearchForm, self).__init__(*args, **kwargs)
+
+    query = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'search-form',
+                'placeholder': "Enter name or application reference number to search...",
+            }
+        ),
+        label='Search Applications',
+    )

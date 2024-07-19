@@ -1,6 +1,7 @@
 # models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+import uuid
 
 class AdminUser(AbstractUser):
     contact_number = models.CharField(max_length=50, blank=True, null=True)
@@ -23,6 +24,12 @@ class BuildingPermit(models.Model):
         ('7+', '>=7'),
     ]
 
+    __application_status_options = {
+        "submitted": "Submitted",
+        "in progress": "In Progress",
+        "approved": "Approved",
+    }
+
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=15)
     mail_id = models.EmailField()
@@ -33,6 +40,10 @@ class BuildingPermit(models.Model):
     government_id_proof = models.FileField(upload_to='id_proofs/')
     land_purchase_record = models.FileField(upload_to='land_records/')
     trees_required = models.PositiveIntegerField()
+    application_number = models.CharField(max_length=50, default=str(uuid.uuid4()))
+    application_status = models.CharField(max_length=20, choices=__application_status_options, default="submitted")
+
+
 
     def __str__(self):
         return f"Building Permit for {self.name}"

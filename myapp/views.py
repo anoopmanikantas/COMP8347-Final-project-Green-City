@@ -1,10 +1,48 @@
 from django.shortcuts import render , redirect
-from .forms import BuildingPermitForm
+from .forms import BuildingPermitForm, SearchForm
 from .models import BuildingPermit
+from .respository import Repository
+
+
+repository = Repository()
 
 
 def home(request):
-    return render(request, 'home/home.html')
+    building_permits_count = repository.get_building_permits()
+    form = SearchForm(request.GET or None)
+    results = []
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        # 1. Search for the name first if it exists.
+        building_permits_names = repository.get_building_permits(name=query)
+        building_permit_applications = repository.get_building_permits(application_number=query)
+        if len(building_permits_names) != 0:
+            results = building_permits_names
+        # 2. if not search for the application reference number.
+        elif len(building_permit_applications) != 0:
+            results = building_permit_applications
+        # 3. else maintain empty result set and display the same.
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(
+            request,
+            'home/applications/applications_card.html',
+            {
+                "form": form,
+                "results": results,
+                'result_count': len(results),
+            }
+        )
+
+    return render(
+        request,
+        'home/home.html',
+        {
+            "permits": building_permits_count,
+            "form": form,
+            'results': results,
+            'result_count': len(results),
+         }
+    )
 
 
 def dashboard(request):

@@ -1,6 +1,9 @@
 /.idea
 /.venv
 
+# Project output folder
+/id_proofs
+/land_records
 
 # Default ignored files
 /shelf/
