@@ -9,10 +9,10 @@
 }
 
 .search-form {
-    width: 80%;
+    width: 85%;
     border-radius: 6px;
     transition: all 0.3s ease;
-    height: 24px;
+    height: 30px;
     margin-left: 16px;
     border-color: darkslategrey;
     font-size: 18px;
@@ -89,7 +89,7 @@
 .search-results {
     margin-top: 10px;
     margin-left: 16px;
-    height: 45%; /* Adjustable height */
+    height: 60%; /* Adjustable height */
     width: 97%; /* Adjustable width */
     background-color: rgba(255, 255, 255, 0.5); /* White background with 50% transparency */
     overflow: auto; /* Add a scrollbar if content overflows */

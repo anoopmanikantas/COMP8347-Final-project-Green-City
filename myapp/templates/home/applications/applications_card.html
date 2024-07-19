@@ -7,9 +7,6 @@
     <a href="" class="-create-new-application-button">Create New Application</a>
 
 {% else %}
-
-    <h3>Search Applications</h3>
-
     <div class="search-container">
         <form id="searchForm" method="GET" action="{% url 'myapp:home' %}">
             {{ form.query }}

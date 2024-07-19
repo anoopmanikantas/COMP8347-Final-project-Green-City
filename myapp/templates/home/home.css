@@ -11,23 +11,20 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap; /* Allows the cards to wrap to the next line if the container width is too small */
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .card1, .card2 {
-    width: calc(90% - 32px);
-    /*height: auto;*/
-    margin: 16px;
+    width: 100%;
     padding: 10px;
-    border-radius: 10px;
-    /*border: 2px;*/
     background-size: cover;
     background-position: center;
-
-    height: 400px;
+    height: 600px;
 }
 
 .card1 {
-    background-image: url("Trees.jpg");
+    position: relative;
 }
 
 .card2 {
@@ -38,7 +35,10 @@ body {
     color: #ffffff;
     margin-top: 16px;
     margin-left: 16px;
+    font-size: xxx-large;
 }
 
-
+.content {
+    padding: 0;
+}
 

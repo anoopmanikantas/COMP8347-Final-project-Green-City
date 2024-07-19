@@ -49,3 +49,9 @@ body {
 .profile {
     margin-left: auto;
 }
+
+.nav-img {
+    width: auto;
+    height: 20px;
+    object-fit: fill;
+}
