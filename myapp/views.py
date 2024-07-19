@@ -1,5 +1,8 @@
-from django.shortcuts import render , redirect
-from .forms import BuildingPermitForm, SearchForm
+from django.contrib import messages
+from django.http import HttpResponse
+from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
+from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
 from .models import BuildingPermit
 from .respository import Repository
 
@@ -66,11 +69,28 @@ def adminpage(request):
 
 
 def adminlogin(request):
-    return render(request, 'admin/admin_login.html')
+    if request.method == 'POST':
+        form = AdminLoginForm(data=request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
+            if user is not None:
+                login(request, user)
+                return redirect('myapp:adminpage')
+    else:
+        form = AdminLoginForm()
+    return render(request, 'admin/admin_login.html', {'form': form})
 
 
 def adminsignup(request):
-    return render(request, 'admin/admin_signup.html')
+    if request.method == 'POST':
+        form = AdminSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # login(request, user)
+            return redirect('myapp:adminlogin')
+    else:
+        form = AdminSignupForm()
+    return render(request, 'admin/admin_signup.html', {'form': form})
 
 
 def privacy_policy(request):
@@ -82,11 +102,38 @@ def about(request):
 
 
 def login(request):
-    return render(request, 'register/login.html')
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f'You are now logged in as {username}.')
+                return redirect('myapp:home')
+            else:
+                messages.error(request, 'Invalid username or password.')
+        else:
+            messages.error(request, 'Invalid username or password.')
+    else:
+        form = CustomAuthenticationForm()
+    return render(request, 'register/login.html', {'form': form})
 
 
 def signup(request):
-    return render(request, 'register/signup.html')
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # messages.success(request, 'Account created successfully!')
+            return redirect('myapp:login')
+        else:
+            error_messages = form.errors.as_json()
+            return HttpResponse(f'Please correct the error below: {error_messages}')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register/signup.html', {'form': form})
 
 
 def calculate_trees(area, floors):
