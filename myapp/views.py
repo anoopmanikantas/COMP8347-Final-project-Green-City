@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render , redirect
 from .forms import BuildingPermitForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
 from .models import BuildingPermit
@@ -47,8 +47,8 @@ def adminsignup(request):
     if request.method == 'POST':
         form = AdminSignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            # login(request, user)
+            form.save()
+
             return redirect('myapp:adminlogin')
     else:
         form = AdminSignupForm()
@@ -63,7 +63,7 @@ def about(request):
     return render(request, 'about/about.html')
 
 
-def login(request):
+def userlogin(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -72,7 +72,7 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f'You are now logged in as {username}.')
+                # messages.info(request, f'You are now logged in as {username}.')
                 return redirect('myapp:home')
             else:
                 messages.error(request, 'Invalid username or password.')

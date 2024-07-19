@@ -15,7 +15,7 @@ urlpatterns = [
     path('adminsignup/', views.adminsignup, name='adminsignup'),
     path('about/', views.about, name='about'),
     path('privacy/', views.privacy_policy, name='privacy_policy'),
-    path('login/',views.login, name='login'),
+    path('login/',views.userlogin, name='login'),
     path('signup/',views.signup, name='signup'),
     path('apply/', views.building_permit_application, name='building_permit_application'),
     # Add other paths as needed
