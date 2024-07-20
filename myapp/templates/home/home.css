@@ -1,7 +1,3 @@
-body {
-    background: linear-gradient(to bottom, #ffffff, #014a2c);
-}
-
 .welcome {
     text-align: center;
 }
@@ -28,7 +24,7 @@ body {
 }
 
 .card2 {
-    background-image: url("Trees-Dark.jpg");
+    background-image: url("Trees-cut.jpg");
 }
 
 .card1 h2, .card2 h2 {

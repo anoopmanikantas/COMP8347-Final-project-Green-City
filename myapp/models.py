@@ -38,8 +38,10 @@ class CustomUser(AbstractUser):
         related_name='customuser_permissions_set',
         blank=True
     )
+
     def __str__(self):
         return self.username
+
 
 class BuildingPermit(models.Model):
     AREA_CHOICES = [
@@ -73,8 +75,6 @@ class BuildingPermit(models.Model):
     trees_required = models.PositiveIntegerField()
     application_number = models.CharField(max_length=50, default=str(uuid.uuid4()))
     application_status = models.CharField(max_length=20, choices=__application_status_options, default="submitted")
-
-
 
     def __str__(self):
         return f"Building Permit for {self.name}"
