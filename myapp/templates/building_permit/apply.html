@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}Building Permit Application{% endblock %}
-
+{% load static %}
 {% block content %}
-    <h1>Building Permit Application</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <link rel="stylesheet" href="{% static 'building_permit/building_permit.css' %}">
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

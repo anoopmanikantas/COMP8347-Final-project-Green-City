@@ -150,6 +150,7 @@ def calculate_trees(area, floors):
     }
     return area_map[area] * floors_map[floors]
 
+
 def building_permit_application(request):
     if request.method == 'POST':
         form = BuildingPermitForm(request.POST, request.FILES)
