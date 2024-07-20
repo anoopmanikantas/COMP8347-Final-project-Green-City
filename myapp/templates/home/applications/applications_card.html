@@ -1,0 +1,51 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/applications/applications.css' %}">
+
+<h2>Applications</h2>
+
+{% if permits == 0 %}
+    <a href="" class="-create-new-application-button">Create New Application</a>
+
+{% else %}
+    <div class="search-container">
+        <form id="searchForm" method="GET" action="{% url 'myapp:home' %}">
+            {{ form.query }}
+            <button type="submit" class="search-form-submit-button">Search</button>
+        </form>
+    </div>
+    {% if result_count != 0 %}
+        <div class="search-results">
+            {#                display utmost 4 applications, and more than that add a view more button#}
+
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Application Reference Number</th>
+                    <th>Status</th>
+                </tr>
+                {% for result in results %}
+                    <tr class="result-item" data-href="{% url 'myapp:application_details' result.id %}">
+                        <td>{{ result.date }}</td>
+                        <td>{{ result.name }}</td>
+                        <td>{{ result.application_number }}</td> {# TODO: This must be replaced with result property application number #}
+                        <td>{{ result.application_status }}</td> {# TODO: This must be replaced with result property application status #}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% elif message != "" %}
+        <h2 class="no-results"> No Applications Found Please Create A New Application </h2>
+    {% endif %}
+
+    <a href="{% url 'myapp:building_permit_application' %}" class="new-application-button">New Application</a>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function($) {
+    $(".result-item").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>

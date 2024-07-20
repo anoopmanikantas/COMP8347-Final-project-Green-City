@@ -1,17 +1,53 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render , redirect
-from .forms import BuildingPermitForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
 from .models import BuildingPermit
+from .respository import Repository
+
+
+repository = Repository()
 
 
 def home(request):
-    return render(request, 'home/home.html')
+    building_permits_count = repository.get_building_permits()
+    form = SearchForm(request.GET or None)
+    results = []
+    message = ""
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        # 1. Search for the name first if it exists.
+        building_permits = repository.get_building_permits(query=query, user_id=request.user.id)
 
+        if len(building_permits) != 0:
+            results = building_permits
+        else:
+            message = "No permits found"
+        # 3. else maintain empty result set and display the same.
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(
+            request,
+            'home/applications/applications_card.html',
+            {
+                "form": form,
+                "results": results,
+                'result_count': len(results),
+                'message': message,
+            }
+        )
 
-def dashboard(request):
-    return render(request, 'home/dashboard/dashboard.html')
+    return render(
+        request,
+        'home/home.html',
+        {
+            "permits": building_permits_count,
+            "form": form,
+            'results': results,
+            'result_count': len(results),
+            'message': message,
+         }
+    )
 
 
 def user_profile(request):
@@ -47,8 +83,8 @@ def adminsignup(request):
     if request.method == 'POST':
         form = AdminSignupForm(request.POST)
         if form.is_valid():
-            form.save()
-
+            user = form.save()
+            # login(request, user)
             return redirect('myapp:adminlogin')
     else:
         form = AdminSignupForm()
@@ -63,7 +99,7 @@ def about(request):
     return render(request, 'about/about.html')
 
 
-def userlogin(request):
+def user_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -72,7 +108,7 @@ def userlogin(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                # messages.info(request, f'You are now logged in as {username}.')
+                messages.info(request, f'You are now logged in as {username}.')
                 return redirect('myapp:home')
             else:
                 messages.error(request, 'Invalid username or password.')
@@ -98,10 +134,6 @@ def signup(request):
     return render(request, 'register/signup.html', {'form': form})
 
 
-from django.shortcuts import render
-from .forms import BuildingPermitForm
-from .models import BuildingPermit
-
 def calculate_trees(area, floors):
     area_map = {
         '0-0.3': 1,
@@ -116,6 +148,7 @@ def calculate_trees(area, floors):
     }
     return area_map[area] * floors_map[floors]
 
+
 def building_permit_application(request):
     if request.method == 'POST':
         form = BuildingPermitForm(request.POST, request.FILES)
@@ -123,8 +156,27 @@ def building_permit_application(request):
             permit = form.save(commit=False)
             permit.trees_required = calculate_trees(permit.area, permit.floors)
             permit.save()
-            return render(request, 'building_permit/result.html', {'trees_required': permit.trees_required})
+            return render(
+                request,
+                'building_permit/result.html',
+                {
+                    'trees_required': permit.trees_required
+                }
+            )
     else:
-        form = BuildingPermitForm()
+        form = BuildingPermitForm(initial={'user_id': int(request.user.id)})
     return render(request, 'building_permit/apply.html', {'form': form})
 
+
+def debug_result_page(request):
+    return render(request,
+                  'building_permit/result.html',
+                  {
+                    'trees_required': 4
+                    }
+                  )
+
+
+def application_details(request, permit_id: int) -> HttpResponse:
+    permit = get_object_or_404(BuildingPermit, pk=permit_id, user_id=request.user.id)
+    return render(request, 'home/applications/application_details.html', {'permit': permit})

@@ -1,0 +1,40 @@
+.welcome {
+    text-align: center;
+}
+
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows the cards to wrap to the next line if the container width is too small */
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.card1, .card2 {
+    width: 100%;
+    padding: 10px;
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+}
+
+.card1 {
+    position: relative;
+}
+
+.card2 {
+    background-image: url("Trees-cut.jpg");
+}
+
+.card1 h2, .card2 h2 {
+    color: #ffffff;
+    margin-top: 16px;
+    margin-left: 16px;
+    font-size: xxx-large;
+}
+
+.content {
+    padding: 0;
+}
+

@@ -1,0 +1,208 @@
+.content {
+    padding: 0;
+    margin: 0;
+}
+
+.search-container {
+    position:relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.search-form {
+    width: 85%;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    height: 30px;
+    margin-left: 16px;
+    border-color: darkslategrey;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 16px;
+}
+
+.search-form:focus {
+    outline-color: darkslategrey;
+    outline-style: solid;
+}
+
+.search-form::placeholder {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card2 label, .card2 h3 {
+    color: #ffffff;
+}
+
+.card2 h3 {
+    margin-left: 16px;
+}
+
+.card2 h2 {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+}
+
+.search-form:not(:focus) {
+    border-color: darkslategrey;
+}
+
+.card2 {
+    position: relative;
+}
+
+.search-form-submit-button {
+    width: 10%;
+    margin-left: 20px;
+    padding: 10px 20px; /* adjust size here */
+    border-radius: 15px; /* adjust border radius here */
+    background-color: green; /* adjust color here */
+    color: white;
+    text-align: center;
+    text-decoration: none; /* removes underline */
+    /*font-size: 16px;*/
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: none;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: normal;
+    font-size: large;
+}
+
+
+.card2 .new-application-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    padding: 10px 20px; /* adjust size here */
+    border-radius: 15px; /* adjust border radius here */
+    background-color: green; /* adjust color here */
+    color: white;
+    text-align: center;
+    text-decoration: none; /* removes underline */
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-bottom: 16px;
+    margin-right: 16px;
+}
+
+.new-application-button:hover, .search-form-submit-button:hover {
+    background-color: darkgreen; /* adjust hover color here */
+    color: white;
+}
+
+.search-results {
+    margin-top: 10px;
+    margin-left: 16px;
+    height: 60%; /* Adjustable height */
+    width: 97%; /* Adjustable width */
+    background-color: rgba(255, 255, 255, 0.7); /* White background with 50% transparency */
+    overflow: auto; /* Add a scrollbar if content overflows */
+    /*padding: 10px; !* Equal spacing around the elements *!*/
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.search-results th:first-child, .search-results td:first-child {
+    padding-left: 40px;
+}
+
+.search-results table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Removes the double borders */
+}
+
+.search-results th, .search-results td {
+    padding: 10px; /* Equal spacing around the text in each cell */
+    text-align: left; /* Left-aligned text */
+    border-bottom: 1px solid #ddd; /* Add a bottom border to all table cells */
+}
+
+.search-results th {
+    /*background-color: #4CAF50; !* Green background *!*/
+    color: #0b360c; /* White text */
+}
+
+.application-item {
+    text-decoration: none;
+    color: inherit;
+}
+
+.result-item {
+    cursor: pointer;
+}
+
+.application-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh; /* Adjust as needed */
+    background-image: url('house.jpg'); /* Add your background image */
+    background-size: cover;
+}
+
+.application-h1, .application-h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.application-h1 {
+    font-family: Georgia, sans-serif;
+    color: #1d5b1f;
+    font-weight: 600;
+}
+
+.application-details-container-inner {
+    background: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+    backdrop-filter: blur(10px); /* This will give the blur effect */
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%; /* Adjust as needed */
+    margin: auto;
+}
+
+.column-row-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    padding-left: 50px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will center the items vertically */
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.cell-label, .cell-data {
+    width: 45%; /* This will give each cell equal width */
+}
+
+.cell-label {
+    font-weight: bold;
+}
+
+
+.no-results {
+    font-family: Georgia, 'Segoe UI', system-ui, sans-serif;
+    font-weight: 500;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+

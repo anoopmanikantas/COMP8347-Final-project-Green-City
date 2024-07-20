@@ -1,8 +1,43 @@
-{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/dashboard/dashboard.css' %}">
+<div class="background">
+    <div class="carousel">
+        <div class="carousel-item active">
+            <img src="{% static 'home/dashboard/Gardening.jpg' %}" alt="img1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'home/dashboard/Trees.jpg' %}" alt="img2">
+        </div>
+    </div>
+</div>
+<div class="welcome-container">
+    <img class="welcome-img" src="{% static 'Logo.png' %}" alt="logo">
+    <h1 class="welcome-h1">Welcome to Green City Community</h1>
+    <p class="welcome-p">At our community, we believe in the power of unity and the impact
+        each one of us can make to help our planet. We are a group of nature enthusiasts committed to promoting greenery
+        and making our world a greener place.</p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    const carouselItems = $('.carousel-item');
+    var currentIndex = 0;
+    var intervalId;
 
-{% block title %}Dashboard - My Website{% endblock %}
+    function startCarousel() {
+        intervalId = setInterval(function() {
+            carouselItems.eq(currentIndex).removeClass('active');
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            carouselItems.eq(currentIndex).addClass('active');
+        }, 5000);  // Change image every 2 seconds
+    }
 
-{% block content %}
-    <h1>Dashboard</h1>
-    <p>This is the dashboard content.</p>
-{% endblock %}
+    function stopCarousel() {
+        clearInterval(intervalId);
+    }
+
+    startCarousel();
+
+    $('.carousel').hover(stopCarousel, startCarousel);  // Stop carousel on hover
+});
+</script>

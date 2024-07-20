@@ -4,10 +4,13 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'building_permit/result.css' %}">
-    <div class="result-container">
-        <h1 class="result-heading">Building Permit Application Result</h1>
-        <div class="center-text">
-            <h2>Number of trees required: <span class="trees-required">{{ trees_required }}</span></h2>
+    <div class="result-container-main">
+        <div class="result-container">
+            <h1 class="result-heading">Building Permit Application Result</h1>
+            <div class="center-text">
+                <h2 class="result-heading-2">Number of trees required to be planted by you</h2> 
+                <span class="trees-required">{{ trees_required }}</span>
+            </div>
         </div>
     </div>
 {% endblock %}
