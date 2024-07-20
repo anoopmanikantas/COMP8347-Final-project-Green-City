@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <title>{% block title %}My Website{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
+    <link rel="stylesheet" href="{% static 'contact.css' %}">
 </head>
 <body>
     <div class="navbar">
         <div class="nav-links">
-            <a href="{% url 'myapp:home' %}">
-                <img class="nav-img" src="{% static 'Logo-small.png' %}" alt="Home">
-            </a>
+            <a href="{% url 'myapp:home' %}">Home</a>
             <a href="{% url 'myapp:about' %}">About Us</a>
             <a href="{% url 'myapp:privacy_policy' %}">Privacy Policy</a>
         </div>
@@ -21,6 +21,48 @@
     <div class="content">
         {% block content %}
         {% endblock %}
+    </div>
+
+    <div class="contact-section">
+        <h2>Meet us</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <img src="{% static 'phone-icon.png' %}" alt="Phone">
+                <span>+(519) 253-3000</span>
+            </div>
+            <div class="contact-item">
+                <img src="{% static 'email-icon.png' %}" alt="Email">
+                <span>contact@uwindsor.ca</span>
+            </div>
+            <div class="contact-item">
+                <img src="{% static 'address-icon.png' %}" alt="Address">
+                <span>401 Sunset Ave, Windsor, ON N9B 3P4</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="{% static 'Logo.png' %}" alt="Green City">
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#"><img src="{% static 'social-facebook.png' %}" alt="Facebook"></a>
+                <a href="#"><img src="{% static 'social-twitter.png' %}" alt="Twitter"></a>
+                <a href="#"><img src="{% static 'social-instagram.png' %}" alt="Instagram"></a>
+                <a href="#"><img src="{% static 'social-linkedin.png' %}" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Green City is part of University of Windsor Project</p>
+            <p>Please review our updated Terms of Service</p>
+        </div>
     </div>
 </body>
 </html>

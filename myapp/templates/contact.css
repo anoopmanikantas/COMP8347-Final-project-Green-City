@@ -1,0 +1,34 @@
+.contact-section {
+    background-color: #015e01;
+    padding: 40px 10%;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.contact-item img {
+    width: 24px;
+    margin-right: 10px;
+}
+
+.contact-item span {
+    font-size: 1.2em;
+    color: #ffffff;
+}
