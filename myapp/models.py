@@ -1,4 +1,6 @@
 # models.py
+from datetime import datetime
+
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 import uuid
@@ -30,12 +32,12 @@ class CustomUser(AbstractUser):
 
     groups = models.ManyToManyField(
         Group,
-        related_name='customuser_set',
+        related_name='CustomUser_set',
         blank=True
     )
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='customuser_permissions_set',
+        related_name='CustomUser_permissions_set',
         blank=True
     )
 
@@ -75,6 +77,8 @@ class BuildingPermit(models.Model):
     trees_required = models.PositiveIntegerField()
     application_number = models.CharField(max_length=50, default=str(uuid.uuid4()))
     application_status = models.CharField(max_length=20, choices=__application_status_options, default="submitted")
+    date = models.CharField(max_length=50, default=str(datetime.now().strftime("%B %d, %Y")))
+    user_id = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return f"Building Permit for {self.name}"

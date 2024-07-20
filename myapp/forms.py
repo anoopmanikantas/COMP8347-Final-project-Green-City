@@ -38,11 +38,12 @@ class BuildingPermitForm(forms.ModelForm):
     class Meta:
         model = BuildingPermit
         fields = ['name', 'contact_number', 'mail_id', 'city', 'province', 'area', 'floors', 'government_id_proof',
-                  'land_purchase_record']
+                  'land_purchase_record', 'user_id']
 
         widgets = {
             'area': forms.Select(choices=BuildingPermit.AREA_CHOICES),
             'floors': forms.Select(choices=BuildingPermit.FLOORS_CHOICES),
+            'user_id': forms.HiddenInput(),
         }
 
 
@@ -57,7 +58,7 @@ class SearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'search-form',
-                'placeholder': "Enter name or application reference number to search...",
+                'placeholder': "Enter name, application status or application reference number to search...",
             }
         ),
         label='Search Applications',

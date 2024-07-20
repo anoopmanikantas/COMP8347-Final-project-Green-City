@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.contrib.auth import authenticate
-from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
 from .models import BuildingPermit
 from .respository import Repository
@@ -14,16 +14,16 @@ def home(request):
     building_permits_count = repository.get_building_permits()
     form = SearchForm(request.GET or None)
     results = []
+    message = ""
     if form.is_valid():
         query = form.cleaned_data['query']
         # 1. Search for the name first if it exists.
-        building_permits_names = repository.get_building_permits(name=query)
-        building_permit_applications = repository.get_building_permits(application_number=query)
-        if len(building_permits_names) != 0:
-            results = building_permits_names
-        # 2. if not search for the application reference number.
-        elif len(building_permit_applications) != 0:
-            results = building_permit_applications
+        building_permits = repository.get_building_permits(query=query, user_id=request.user.id)
+
+        if len(building_permits) != 0:
+            results = building_permits
+        else:
+            message = "No permits found"
         # 3. else maintain empty result set and display the same.
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         return render(
@@ -33,6 +33,7 @@ def home(request):
                 "form": form,
                 "results": results,
                 'result_count': len(results),
+                'message': message,
             }
         )
 
@@ -44,6 +45,7 @@ def home(request):
             "form": form,
             'results': results,
             'result_count': len(results),
+            'message': message,
          }
     )
 
@@ -101,7 +103,7 @@ def about(request):
     return render(request, 'about/about.html')
 
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -158,7 +160,18 @@ def building_permit_application(request):
             permit = form.save(commit=False)
             permit.trees_required = calculate_trees(permit.area, permit.floors)
             permit.save()
-            return render(request, 'building_permit/result.html', {'trees_required': permit.trees_required})
+            return render(
+                request,
+                'building_permit/result.html',
+                {
+                    'trees_required': permit.trees_required
+                }
+            )
     else:
-        form = BuildingPermitForm()
+        form = BuildingPermitForm(initial={'user_id': int(request.user.id)})
     return render(request, 'building_permit/apply.html', {'form': form})
+
+
+def application_details(request, permit_id: int) -> HttpResponse:
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    return render(request, 'home/applications/application_details.html', {'permit': permit})

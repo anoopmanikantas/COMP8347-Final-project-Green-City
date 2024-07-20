@@ -92,10 +92,11 @@
     margin-left: 16px;
     height: 60%; /* Adjustable height */
     width: 97%; /* Adjustable width */
-    background-color: rgba(255, 255, 255, 0.5); /* White background with 50% transparency */
+    background-color: rgba(255, 255, 255, 0.7); /* White background with 50% transparency */
     overflow: auto; /* Add a scrollbar if content overflows */
     /*padding: 10px; !* Equal spacing around the elements *!*/
     border-radius: 10px;
+    font-weight: bold;
 }
 
 .search-results th:first-child, .search-results td:first-child {
@@ -116,4 +117,49 @@
 .search-results th {
     /*background-color: #4CAF50; !* Green background *!*/
     color: #0b360c; /* White text */
+}
+
+.application-item {
+    text-decoration: none;
+    color: inherit;
+}
+
+.result-item {
+    cursor: pointer;
+}
+
+.application-details-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.application-details-container-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 45%; /* Adjust this value as needed */
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cell-label {
+    /* Styles for the static data cells */
+    font-weight: bold;
+}
+
+.cell-data {
+    /* Styles for the dynamic data cells */
 }
