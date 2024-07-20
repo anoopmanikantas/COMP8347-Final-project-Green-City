@@ -51,6 +51,10 @@ def signup(request):
     return render(request, 'register/signup.html')
 
 
+from django.shortcuts import render
+from .forms import BuildingPermitForm
+from .models import BuildingPermit
+
 def calculate_trees(area, floors):
     area_map = {
         '0-0.3': 1,
@@ -76,3 +80,4 @@ def building_permit_application(request):
     else:
         form = BuildingPermitForm()
     return render(request, 'building_permit/apply.html', {'form': form})
+

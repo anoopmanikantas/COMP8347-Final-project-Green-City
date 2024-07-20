@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}Permit Result{% endblock %}
-
+{% load static %}
 {% block content %}
-    <h1>Permit Application Result</h1>
-    <p>Number of trees required: {{ trees_required }}</p>
+    <link rel="stylesheet" href="{% static 'building_permit/result.css' %}">
+    <div class="result-container">
+        <h1 class="result-heading">Building Permit Application Result</h1>
+        <div class="center-text">
+            <h2>Number of trees required: <span class="trees-required">{{ trees_required }}</span></h2>
+        </div>
+    </div>
 {% endblock %}

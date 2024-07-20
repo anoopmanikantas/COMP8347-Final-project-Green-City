@@ -3,17 +3,16 @@
 {% block title %}Building Permit Application{% endblock %}
 {% load static %}
 {% block content %}
-<div class="container">
-    <div class="form-container">
-        <img src="{% static 'building_permit/s960_Untitled_design__10_.png' %}" alt="Showcase Image" class="showcase-image">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
+    <link rel="stylesheet" href="{% static 'building_permit/building_permit.css' %}">
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
-    <div class="image-container">
-        <!-- This container can be used for additional content if needed -->
-    </div>
-</div>
 {% endblock %}
