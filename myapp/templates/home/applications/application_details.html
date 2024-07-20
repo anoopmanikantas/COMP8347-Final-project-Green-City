@@ -1,58 +1,62 @@
 {% extends 'base.html' %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'home/applications/applications.css' %}">
+
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/applications/applications.css' %}">
     <div class="application-details-container">
         <div class="application-details-container-inner">
             <h1 class="application-h1">Application Details</h1>
-            <div class="column">
-                <div class="row">
-                    <div class="cell-label">Name:</div>
-                    <div class="cell-data">{{ permit.name }}</div>
+            <h3 class="application-h2">{{ permit.application_number }}</h3>
+            <div class="column-row-container">
+                <div class="column">
+                    <div class="row">
+                        <div class="cell-label">Name:</div>
+                        <div class="cell-data">{{ permit.name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-label">Contact Number:</div>
+                        <div class="cell-data">{{ permit.contact_number }}</div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="cell-label">Contact Number:</div>
-                    <div class="cell-data">{{ permit.contact_number }}</div>
+                <div class="column">
+                    <div class="row">
+                        <div class="cell-label">Mail ID:</div>
+                        <div class="cell-data">{{ permit.mail_id }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-label">City:</div>
+                        <div class="cell-data">{{ permit.city }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="column">
-                <div class="row">
-                    <div class="cell-label">Mail ID:</div>
-                    <div class="cell-data">{{ permit.mail_id }}</div>
+                <div class="column">
+                    <div class="row">
+                        <div class="cell-label">Province:</div>
+                        <div class="cell-data">{{ permit.province }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-label">Area:</div>
+                        <div class="cell-data">{{ permit.area }}</div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="cell-label">City:</div>
-                    <div class="cell-data">{{ permit.city }}</div>
+                <div class="column">
+                    <div class="row">
+                        <div class="cell-label">Floors:</div>
+                        <div class="cell-data">{{ permit.floors }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-label">Trees Required:</div>
+                        <div class="cell-data">{{ permit.trees_required }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="column">
-                <div class="row">
-                    <div class="cell-label">Province:</div>
-                    <div class="cell-data">{{ permit.province }}</div>
-                </div>
-                <div class="row">
-                    <div class="cell-label">Area:</div>
-                    <div class="cell-data">{{ permit.area }}</div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="row">
-                    <div class="cell-label">Floors:</div>
-                    <div class="cell-data">{{ permit.floors }}</div>
-                </div>
-                <div class="row">
-                    <div class="cell-label">Trees Required:</div>
-                    <div class="cell-data">{{ permit.trees_required }}</div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="row">
-                    <div class="cell-label">Application Status:</div>
-                    <div class="cell-data">{{ permit.application_status }}</div>
-                </div>
-                <div class="row">
-                    <div class="cell-label">Date Submitted:</div>
-                    <div class="cell-data">{{ permit.date }}</div>
+                <div class="column">
+                    <div class="row">
+                        <div class="cell-label">Application Status:</div>
+                        <div class="cell-data">{{ permit.application_status }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-label">Date Submitted:</div>
+                        <div class="cell-data">{{ permit.date }}</div>
+                    </div>
                 </div>
             </div>
         </div>

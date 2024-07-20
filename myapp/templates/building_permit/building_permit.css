@@ -1,66 +1,8 @@
-/* General styling */
-body {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    background-color: #f4f4f4; /* Light gray background */
-    background: linear-gradient(to bottom, #a9ffd4, #014a2c);
-    margin: 0;
+.content {
     padding: 0;
-    background-image: url("Tree.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Revert to auto to allow scrolling */
-    display: flex;
-    flex-direction: column; /* Ensure the container is centered vertically */
-    justify-content: center; /* Center the container vertically */
 }
 
-/* Navbar styling */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Adjusted to center vertically */
-    overflow: hidden;
-    /*padding: 10px 20px;*/
-    background-color: #4CAF50;
-    /*color: #fff;*/
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    align-items: center;
-}
-
-.navbar .nav-links {
-    display: flex;
-    overflow: hidden;
-    margin-left: 10px;
-}
-
-
-.navbar .profile-icon {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.navbar .profile-icon img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    align-items: flex-end;
-}
-
-/* Container styling */
-.container {
+.apply-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,8 +10,9 @@ body {
     width: 100%; /* Full width */
     min-height: 100vh; /* Full viewport height */
     padding: 20px;
-    margin-top: 60px; /* Add space for navbar */
     box-sizing: border-box;
+    background-image: url("Tree.png");
+    background-size: cover;
 }
 
 /* Image container styling */
@@ -88,7 +31,7 @@ body {
 
 /* Form container styling */
 .form-container {
-    width: 100%; /* Full width */
+    width: 80%; /* Full width */
     max-height: 70%; /* Adjust to fit with image */
     overflow: auto; /* Allow scrolling if content exceeds container height */
     padding: 20px;

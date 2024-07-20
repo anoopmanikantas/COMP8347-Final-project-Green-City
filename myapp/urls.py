@@ -6,7 +6,6 @@ app_name = 'myapp'
 
 urlpatterns = [
     path('home/', views.home, name='home'),
-    path('dashboard/', views.dashboard, name='dashboard'),
     path('user_profile/', views.user_profile, name='user_profile'),
     path('building_permit_details/', views.building_permit_details, name='building_permit_details'),
     path('status_details/', views.status_details, name='status_details'),
@@ -19,5 +18,6 @@ urlpatterns = [
     path('signup/',views.signup, name='signup'),
     path('apply/', views.building_permit_application, name='building_permit_application'),
     path('application_details/<int:permit_id>/', views.application_details, name='application_details'),
+    path('debug/', views.debug_result_page, name='debug_result_page'),
     # Add other paths as needed
 ] + staticfiles_urlpatterns()

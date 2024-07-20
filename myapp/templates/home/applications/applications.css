@@ -1,3 +1,8 @@
+.content {
+    padding: 0;
+    margin: 0;
+}
+
 .search-container {
     position:relative;
     display: flex;
@@ -38,6 +43,10 @@
     margin-left: 16px;
 }
 
+.card2 h2 {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+}
 
 .search-form:not(:focus) {
     border-color: darkslategrey;
@@ -56,11 +65,13 @@
     color: white;
     text-align: center;
     text-decoration: none; /* removes underline */
-    font-size: 16px;
+    /*font-size: 16px;*/
     transition-duration: 0.4s;
     cursor: pointer;
     border: none;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     font-weight: normal;
+    font-size: large;
 }
 
 
@@ -130,36 +141,68 @@
 
 .application-details-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    height: 95vh; /* Adjust as needed */
+    background-image: url('house.jpg'); /* Add your background image */
+    background-size: cover;
+}
+
+.application-h1, .application-h2 {
+    text-align: center;
     width: 100%;
-    height: 100%;
+}
+
+.application-h1 {
+    font-family: Georgia, sans-serif;
+    color: #1d5b1f;
+    font-weight: 600;
 }
 
 .application-details-container-inner {
-    width: 100%;
+    background: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+    backdrop-filter: blur(10px); /* This will give the blur effect */
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%; /* Adjust as needed */
+    margin: auto;
+}
+
+.column-row-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     height: 100%;
+    padding-left: 50px;
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    width: 45%; /* Adjust this value as needed */
-    margin-bottom: 20px;
+    align-items: center; /* This will center the items vertically */
 }
 
 .row {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.cell-label, .cell-data {
+    width: 45%; /* This will give each cell equal width */
 }
 
 .cell-label {
-    /* Styles for the static data cells */
     font-weight: bold;
 }
 
-.cell-data {
-    /* Styles for the dynamic data cells */
+
+.no-results {
+    font-family: Georgia, 'Segoe UI', system-ui, sans-serif;
+    font-weight: 500;
+    color: white;
+    width: 100%;
+    text-align: center;
 }
+

@@ -1,5 +1,7 @@
 # forms.py
 from django import forms
+from django.core.exceptions import ValidationError
+import re
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import BuildingPermit, CustomUser
 
@@ -45,6 +47,19 @@ class BuildingPermitForm(forms.ModelForm):
             'floors': forms.Select(choices=BuildingPermit.FLOORS_CHOICES),
             'user_id': forms.HiddenInput(),
         }
+
+    # Validation for Email and phone number
+    def clean_mail_id(self):
+        mail_id = self.cleaned_data['mail_id']
+        if not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', mail_id):
+            raise ValidationError('Invalid email address')
+        return mail_id
+
+    def clean_contact_number(self):
+        contact_number = self.cleaned_data['contact_number']
+        if not re.match(r'^\+?1?\d{9,15}$', contact_number):
+            raise ValidationError('Invalid contact number')
+        return contact_number
 
 
 class SearchForm(forms.Form):

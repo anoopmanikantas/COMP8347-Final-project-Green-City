@@ -50,10 +50,6 @@ def home(request):
     )
 
 
-def dashboard(request):
-    return render(request, 'home/dashboard/dashboard.html')
-
-
 def user_profile(request):
     return render(request, 'user_profile/user_profile.html')
 
@@ -172,6 +168,15 @@ def building_permit_application(request):
     return render(request, 'building_permit/apply.html', {'form': form})
 
 
+def debug_result_page(request):
+    return render(request,
+                  'building_permit/result.html',
+                  {
+                    'trees_required': 4
+                    }
+                  )
+
+
 def application_details(request, permit_id: int) -> HttpResponse:
-    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit = get_object_or_404(BuildingPermit, pk=permit_id, user_id=request.user.id)
     return render(request, 'home/applications/application_details.html', {'permit': permit})

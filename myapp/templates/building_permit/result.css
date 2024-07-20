@@ -1,158 +1,29 @@
-/* General styling */
-body {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    background-color: #f4f4f4; /* Light gray background */
-    background: linear-gradient(to bottom, #a9ffd4, #014a2c);
-    margin: 0;
-    padding: 0;
-    background-image: url("R.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Revert to auto to allow scrolling */
-    display: flex;
-    flex-direction: column; /* Ensure the container is centered vertically */
-    justify-content: center; /* Center the container vertically */
-}
-
-/* Navbar styling */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Adjusted to center vertically */
-    overflow: hidden;
-    /*padding: 10px 20px;*/
-    background-color: #4CAF50;
-    /*color: #fff;*/
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    align-items: center;
-}
-
-.navbar .nav-links {
-    display: flex;
-    overflow: hidden;
-    margin-left: 10px;
-}
-
-
-.navbar .profile-icon {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.navbar .profile-icon img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    align-items: flex-end;
-}
-
-/* Container styling */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Full width */
-    min-height: 100vh; /* Full viewport height */
-    padding: 20px;
-    margin-top: 60px; /* Add space for navbar */
-    box-sizing: border-box;
-}
-
-/* Image container styling */
-.image-container {
-    width: 100%;
-    max-height: 30%; /* Adjust as needed */
-    overflow: hidden;
-    flex-shrink: 0; /* Prevent shrinking */
-}
-
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Form container styling */
-.form-container {
-    width: 100%; /* Full width */
-    max-height: 70%; /* Adjust to fit with image */
-    overflow: auto; /* Allow scrolling if content exceeds container height */
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Adjust spacing */
-}
-
-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-form p {
-    margin-bottom: 5px;
-}
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-form input,
-form select,
-form button {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-form button {
-    grid-column: span 2;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-/* Additional styles for readability */
-form input::placeholder,
-form select::placeholder,
-form button::placeholder {
-    color: #666;
-}
-
-form input:focus,
-form select:focus,
-form button:focus {
-    border-color: #4CAF50;
-    outline: none;
+.content {
+    padding: 0
 }
 
 .center-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: space-around;
     text-align: justify;
-    margin-top: 20px; /* Adjust margin as needed */
+    align-items: center;
+    /*margin-top: 20px; !* Adjust margin as needed *!*/
+}
+
+.result-container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh; /* Full viewport height */
+    width: 100vw;
+    background-image: url("R.jpeg");
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /*background-color: rgba(255,255,255, 0.5);*/
 }
 
 .result-container {
@@ -160,19 +31,27 @@ form button:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 30vh;
+    width: 50vw;
+    background-color: rgba(255,255,255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 
 .result-heading {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     text-align: center;
-    color: white; /* Text color set to white */
-    font-size: 36px; /* Adjust font size as needed */
-    margin-bottom: 20px; /* Adjust margin as needed */
+    font-weight: 700;
+    color: #d8f8d8;
+    padding-top: 20px;
+}
+
+.result-heading-2{
+    font-weight: 600;
 }
 
 .trees-required {
-    font-weight: bold;
-    color: floralwhite; /* Adjust color as needed */
-    font-size: 72px; /* Adjust font size as needed */
-    /* Add any other styling properties */
+    font-weight: normal;
+    color: #1d5b1f;
+    font-size: 72px;
 }
