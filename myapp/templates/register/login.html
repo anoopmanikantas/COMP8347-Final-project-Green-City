@@ -1,13 +1,17 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaf Now</title>
+    {% block title %}
+    	Leaf Now
+    {% endblock %}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="C:\Applied Computing\IADS\project3\COMP8347-Final-project\myapp\templates\register\login.css">
 </head>
-<body>
+{% block content %}
     <div class="container-fluid vh-100 d-flex align-items-center">
         <div class="row flex-fill">
             <div class="col-lg-6 col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-green p-5">
@@ -41,10 +45,9 @@
             </div>
         </div>
     </div>
-
+{% endblock %}
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
 </html>
