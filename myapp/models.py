@@ -50,7 +50,7 @@ class CustomUser(AbstractUser):
 class ContactModel(models.Model):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
-    description = models.CharField(blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
     name = models.CharField(max_length=10, blank=True, null=True)
 
 
