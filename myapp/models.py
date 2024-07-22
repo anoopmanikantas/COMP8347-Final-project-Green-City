@@ -6,8 +6,6 @@ from django.db import models
 import uuid
 
 # from myapp import forms
-
-
 # class AdminUser(AbstractUser):
 #     contact_number = models.CharField(max_length=50, blank=True, null=True)
 #
@@ -31,6 +29,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
+    is_admin = models.BooleanField(default=False)
 
     # groups = models.ManyToManyField(
     #     Group,

@@ -68,6 +68,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_URL = '/admin/login/'
+
 WSGI_APPLICATION = 'GreenCity.wsgi.application'
 
 

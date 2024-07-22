@@ -15,6 +15,7 @@ urlpatterns = [
     path('adminpage/', views.adminpage, name='adminpage'),
     path('adminlogin/', views.adminlogin, name='adminlogin'),
     path('adminsignup/', views.adminsignup, name='adminsignup'),
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('about/', views.about, name='about'),
     path('privacy/', views.privacy_policy, name='privacy_policy'),
     path('login/', views.user_login, name='login'),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name = "register/password_reset_sent.html"), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "register/password_reset_form.html"), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name = "register/password_reset_done.html"), name='password_reset_complete'),
+    path('accounts/login/', views.user_login, name='accounts_login'),
 ] + staticfiles_urlpatterns()
 
 
