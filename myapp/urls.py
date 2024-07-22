@@ -22,6 +22,8 @@ urlpatterns = [
     path('apply/', views.building_permit_application, name='building_permit_application'),
     path('application_details/<int:permit_id>/', views.application_details, name='application_details'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
+    path('contact/', views.contact_view, name='contact'),
+    # Add other paths as needed
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name ="register/password_reset.html"), name='reset_password'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name = "register/password_reset_sent.html"), name='password_reset_done'),

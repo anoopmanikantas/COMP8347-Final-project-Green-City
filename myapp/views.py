@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, CustomUserCreationForm
+from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, \
+    CustomUserCreationForm, ContactForm
 from .models import BuildingPermit
 from .respository import Repository
-
 
 repository = Repository()
 
@@ -46,7 +46,7 @@ def home(request):
             'results': results,
             'result_count': len(results),
             'message': message,
-         }
+        }
     )
 
 
@@ -172,9 +172,26 @@ def debug_result_page(request):
     return render(request,
                   'building_permit/result.html',
                   {
-                    'trees_required': 4
-                    }
+                      'trees_required': 4
+                  }
                   )
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process form data
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            # You can add your processing logic here
+            return HttpResponse('Thank you for your message.')
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact/contact.html', {'form': form})
 
 
 def application_details(request, permit_id: int) -> HttpResponse:

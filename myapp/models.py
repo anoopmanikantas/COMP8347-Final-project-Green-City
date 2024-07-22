@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import uuid
 
+# from myapp import forms
+
 
 # class AdminUser(AbstractUser):
 #     contact_number = models.CharField(max_length=50, blank=True, null=True)
@@ -43,6 +45,13 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class ContactModel(models.Model):
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=10, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    name = models.CharField(max_length=10, blank=True, null=True)
 
 
 class BuildingPermit(models.Model):
