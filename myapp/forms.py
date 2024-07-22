@@ -3,7 +3,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 import re
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import BuildingPermit, CustomUser
+from .models import BuildingPermit, CustomUser, ContactModel
 
 
 class AdminSignupForm(UserCreationForm):
@@ -60,6 +60,15 @@ class BuildingPermitForm(forms.ModelForm):
         if not re.match(r'^\+?1?\d{9,15}$', contact_number):
             raise ValidationError('Invalid contact number')
         return contact_number
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactModel
+        fields = ['name', 'email', 'phone', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 4})
+        }
 
 
 class SearchForm(forms.Form):

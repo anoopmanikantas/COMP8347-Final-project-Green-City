@@ -6,24 +6,35 @@
 
 .footer-content {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
     margin-right: 40px;
+    width: 20%;
 }
 
 .footer-logo img {
-    width: 40%;
+    width: 100%;
     margin-right: 15px; /* Adjust spacing as needed */
 }
 
 .footer-links {
     display: flex;
+    gap: 20px;
+    flex-direction: row;
+    height: 100%;
+}
+
+.footer-column {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
     gap: 20px;
 }
 

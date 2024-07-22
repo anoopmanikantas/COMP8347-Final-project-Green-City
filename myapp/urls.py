@@ -19,5 +19,6 @@ urlpatterns = [
     path('apply/', views.building_permit_application, name='building_permit_application'),
     path('application_details/<int:permit_id>/', views.application_details, name='application_details'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
+    path('contact/', views.contact_view, name='contact'),
     # Add other paths as needed
 ] + staticfiles_urlpatterns()
