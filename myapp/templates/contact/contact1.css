@@ -1,6 +1,16 @@
 .content {
     padding: 0;
+    background: #1d5b1f;
 }
+.contact-h1{
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
 
 .apply-container {
     display: flex;
@@ -34,9 +44,9 @@
     max-height: 70%; /* Adjust to fit with image */
     overflow: auto; /* Allow scrolling if content exceeds container height */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    /*background-color: rgba(255, 255, 255, 0.8);*/
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
     margin-top: 20px; /* Adjust spacing */
 }
 
@@ -48,12 +58,19 @@ form {
 
 form p {
     margin-bottom: 5px;
+    color: #ffffff;
+    font-weight: 200;
+}
+
+#form-p {
+
 }
 
 form label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    color: #ffffff;
+    font-weight: 200;
 }
 
 form input,
