@@ -107,6 +107,26 @@ def admin_dashboard(request):
     return render(request, 'admin/admin_dashboard.html', {'permits': permits})
 
 
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_approve_permit(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit.application_status = 'approved'
+    permit.save()
+    messages.success(request, f'Application {permit.application_number} approved successfully!')
+    return redirect('myapp:admin_dashboard')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_reject_permit(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit.application_status = 'rejected'
+    permit.save()
+    messages.success(request, f'Application {permit.application_number} rejected.')
+    return redirect('myapp:admin_dashboard')
+
+
 def privacy_policy(request):
     return render(request, 'privacy_policy/privacy_policy.html')
 
