@@ -63,12 +63,16 @@ class BuildingPermitForm(forms.ModelForm):
 
 
 class ContactForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'id': 'form-p'})
+        self.fields['email'].widget.attrs.update({'id': 'form-p'})
+        self.fields['phone'].widget.attrs.update({'id': 'form-p'})
+        self.fields['description'].widget.attrs.update({'id': 'form-p'})
+
     class Meta:
         model = ContactModel
         fields = ['name', 'email', 'phone', 'description']
-        widgets = {
-            'description': forms.Textarea(attrs={'cols': 80, 'rows': 4})
-        }
 
 
 class SearchForm(forms.Form):

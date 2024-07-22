@@ -197,13 +197,8 @@ def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Process form data
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            name = form.cleaned_data['name']
-            description = form.cleaned_data['description']
-            # You can add your processing logic here
-            return HttpResponse('Thank you for your message.')
+            form.save()
+            return redirect('myapp:home')
     else:
         form = ContactForm()
 
