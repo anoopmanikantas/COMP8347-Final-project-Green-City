@@ -1,1 +1,27 @@
-<h1>Admin</h1>
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'admin/admin_page.css' %}">
+<div class="admin-header">
+    <div class="admin-content">
+        <h1>Welcome to Green City Admin Panel</h1>
+        <p>Manage applications efficiently with our easy-to-use dashboard.</p>
+        <div class="admin-buttons">
+            <a href="{% url 'myapp:adminlogin' %}" class="admin-btn login-btn">Admin Login</a>
+            <a href="{% url 'myapp:adminsignup' %}" class="admin-btn signup-btn">Admin Sign Up</a>
+        </div>
+    </div>
+</div>
+<div class="info-section">
+    <h2>Why Use Our Admin Panel?</h2>
+    <ul>
+        <li>Efficiently manage building permit applications.</li>
+        <li>Track application statuses in real-time.</li>
+        <li>Approve or reject applications with a single click.</li>
+        <li>Secure and user-friendly interface.</li>
+    </ul>
+</div>
+{% endblock %}
+
+
