@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, \
     CustomUserCreationForm, ContactForm
-from .models import BuildingPermit
+from .models import BuildingPermit, CustomUser
 from .respository import Repository
 
 repository = Repository()
@@ -71,9 +72,11 @@ def adminlogin(request):
         form = AdminLoginForm(data=request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
-            if user is not None:
+            if user is not None and user.is_admin:
                 login(request, user)
-                return redirect('myapp:adminpage')
+                return redirect('myapp:admin_dashboard')
+            else:
+                messages.error(request, 'Invalid username or password for admin.')
     else:
         form = AdminLoginForm()
     return render(request, 'admin/admin_login.html', {'form': form})
@@ -83,12 +86,45 @@ def adminsignup(request):
     if request.method == 'POST':
         form = AdminSignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            # login(request, user)
+            user = form.save(commit=False)
+            user.is_admin = True
+            user.save()
+            messages.success(request, 'Admin account created successfully!')
             return redirect('myapp:adminlogin')
     else:
         form = AdminSignupForm()
     return render(request, 'admin/admin_signup.html', {'form': form})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_dashboard(request):
+    query = request.GET.get('query', '')
+    if query:
+        permits = BuildingPermit.objects.filter(name__icontains=query) | BuildingPermit.objects.filter(application_number__icontains=query)
+    else:
+        permits = BuildingPermit.objects.all()
+    return render(request, 'admin/admin_dashboard.html', {'permits': permits})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_approve_permit(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit.application_status = 'approved'
+    permit.save()
+    messages.success(request, f'Application {permit.application_number} approved successfully!')
+    return redirect('myapp:admin_dashboard')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_reject_permit(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit.application_status = 'rejected'
+    permit.save()
+    messages.success(request, f'Application {permit.application_number} rejected.')
+    return redirect('myapp:admin_dashboard')
 
 
 def privacy_policy(request):

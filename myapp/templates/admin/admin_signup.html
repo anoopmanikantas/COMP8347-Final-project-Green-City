@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Developer Signup</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'admin_signup.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h2>Developer Signup</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Signup</button>
-        </form>
-    </div>
-</body>
-</html>
+{% block content %}
+<h2>Admin Signup</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+</form>
+{% endblock %}
