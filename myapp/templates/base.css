@@ -1,4 +1,4 @@
-/* Body and general styling */
+Body and general styling
 body {
     font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     background-color: #f4f4f4; /* Light gray background */
@@ -75,3 +75,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #09280a;
 }
+
