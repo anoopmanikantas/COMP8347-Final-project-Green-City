@@ -21,6 +21,7 @@ class AdminLoginForm(AuthenticationForm):
     password = forms.CharField(label='Password', strip=False, widget=forms.PasswordInput)
 
 
+#User Signup
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Required')
     last_name = forms.CharField(max_length=30, required=True, help_text='Required')
@@ -30,7 +31,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'phone', 'password1', 'password2')
 
-
+#User Login
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(max_length=254, required=True, help_text='Required')
     password = forms.CharField(widget=forms.PasswordInput, required=True, help_text='Required')
