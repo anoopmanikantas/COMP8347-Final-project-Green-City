@@ -21,6 +21,7 @@
     width: 100vw;
     background-image: url("R.jpeg");
     background-size: cover;
+    background-position: center bottom;
     overflow-x: hidden;
     overflow-y: hidden;
     /*background-color: rgba(255,255,255, 0.5);*/
@@ -31,7 +32,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 40vh;
     width: 50vw;
     background-color: rgba(255,255,255, 0.3);
     backdrop-filter: blur(10px);
@@ -54,4 +55,10 @@
     font-weight: normal;
     color: #1d5b1f;
     font-size: 72px;
+}
+
+.redirection {
+    font-size: medium;
+    font-weight: 500;
+    color: #FFFFFF;
 }
