@@ -33,9 +33,18 @@ class CustomUserCreationForm(UserCreationForm):
 
 #User Login
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(max_length=254, required=True, help_text='Required')
-    password = forms.CharField(widget=forms.PasswordInput, required=True, help_text='Required')
-
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Username',
+            'class': 'form-control'
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Password',
+            'class': 'form-control'
+        })
+    )
 
 class BuildingPermitForm(forms.ModelForm):
     class Meta:
