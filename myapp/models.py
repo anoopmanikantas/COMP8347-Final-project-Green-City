@@ -53,6 +53,14 @@ class ContactModel(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
 
 
+def user_id_proof_path(instance, filename):
+    return f'id_proofs/{instance.user.id}/{filename}'
+
+
+def user_land_records_path(instance, filename):
+    return f'land_records/{instance.user.id}/{filename}'
+
+
 class BuildingPermit(models.Model):
     AREA_CHOICES = [
         ('0-0.3', '0<0.3'),
@@ -80,8 +88,8 @@ class BuildingPermit(models.Model):
     province = models.CharField(max_length=100)
     area = models.CharField(max_length=20, choices=AREA_CHOICES)
     floors = models.CharField(max_length=20, choices=FLOORS_CHOICES)
-    government_id_proof = models.FileField(upload_to='id_proofs/')
-    land_purchase_record = models.FileField(upload_to='land_records/')
+    government_id_proof = models.FileField(upload_to=user_id_proof_path)
+    land_purchase_record = models.FileField(upload_to=user_land_records_path)
     trees_required = models.PositiveIntegerField()
     application_number = models.CharField(max_length=50, default=str(uuid.uuid4()))
     application_status = models.CharField(max_length=20, choices=__application_status_options, default="submitted")

@@ -182,7 +182,7 @@ def calculate_trees(area, floors):
         '4-6': 2,
         '7+': 3,
     }
-    return area_map[area] * floors_map[floors]
+    return area_map[area] * floors_map[floors] * 3
 
 
 def building_permit_application(request):
@@ -201,6 +201,7 @@ def building_permit_application(request):
             )
     else:
         form = BuildingPermitForm(initial={'user_id': int(request.user.id)})
+        # form = BuildingPermitForm(initial={'user_id': int(0)})
     return render(request, 'building_permit/apply.html', {'form': form})
 
 
