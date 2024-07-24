@@ -16,6 +16,7 @@ urlpatterns = [
     path('adminlogin/', views.adminlogin, name='adminlogin'),
     path('adminsignup/', views.adminsignup, name='adminsignup'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('application/<int:permit_id>/', views.application_details, name='application_details'),
     path('admin/approve/<int:permit_id>/', views.admin_approve_permit, name='admin_approve_permit'),
     path('admin/reject/<int:permit_id>/', views.admin_reject_permit, name='admin_reject_permit'),
     path('about/', views.about, name='about'),

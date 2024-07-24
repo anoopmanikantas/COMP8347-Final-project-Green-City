@@ -1,7 +1,7 @@
 # models.py
 from datetime import datetime
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 import uuid
 
@@ -31,16 +31,16 @@ class CustomUser(AbstractUser):
     phone = models.CharField(max_length=10, blank=True, null=True)
     is_admin = models.BooleanField(default=False)
 
-    # groups = models.ManyToManyField(
-    #     Group,
-    #     related_name='CustomUser_set',
-    #     blank=True
-    # )
-    # user_permissions = models.ManyToManyField(
-    #     Permission,
-    #     related_name='CustomUser_permissions_set',
-    #     blank=True
-    # )
+    groups = models.ManyToManyField(
+        Group,
+        related_name='CustomUser_set',
+        blank=True
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='CustomUser_permissions_set',
+        blank=True
+    )
 
     def __str__(self):
         return self.username

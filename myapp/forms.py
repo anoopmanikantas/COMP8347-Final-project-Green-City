@@ -31,6 +31,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'phone', 'password1', 'password2')
 
+
 #User Login
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
@@ -45,6 +46,7 @@ class CustomAuthenticationForm(AuthenticationForm):
             'class': 'form-control'
         })
     )
+
 
 class BuildingPermitForm(forms.ModelForm):
     class Meta:
@@ -100,4 +102,43 @@ class SearchForm(forms.Form):
             }
         ),
         label='Search Applications',
+    )
+
+
+class FilterForm(forms.Form):
+    application_number = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'filter-input',
+            'placeholder': 'Application Number'
+        }),
+        label=''
+    )
+    name = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'filter-input',
+            'placeholder': 'Name'
+        }),
+        label=''
+    )
+    city = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'filter-input',
+            'placeholder': 'City'
+        }),
+        label=''
+    )
+    status = forms.ChoiceField(
+        required=False,
+        choices=[
+            ('', 'All Statuses'),
+            ('submitted', 'Submitted'),
+            ('in progress', 'In Progress'),
+            ('approved', 'Approved'),
+            ('rejected', 'Rejected'),
+        ],
+        widget=forms.Select(attrs={'class': 'filter-select'}),
+        label=''
     )

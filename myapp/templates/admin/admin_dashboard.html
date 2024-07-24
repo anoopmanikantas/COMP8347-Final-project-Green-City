@@ -1,12 +1,38 @@
+
+{% load static %}
+
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
-<h2>Admin Dashboard</h2>
-<form method="get" action="{% url 'myapp:admin_dashboard' %}">
-    <input type="text" name="query" placeholder="Search by name or application number">
-    <button type="submit">Search</button>
-</form>
-<table>
+<link rel="stylesheet" href="{% static 'admin/admin_dashboard.css' %}">
+
+<div class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+    <p>Manage building permit applications</p>
+</div>
+
+<div class="summary">
+    <p>Total Applications: {{ total_applications }}</p>
+</div>
+
+<div class="search-section">
+    <form method="get" action="{% url 'myapp:admin_dashboard' %}" class="search-form">
+        {{ search_form.query }}
+        <button type="submit" class="btn">Search</button>
+    </form>
+</div>
+
+<div class="filter-section">
+    <form method="get" action="{% url 'myapp:admin_dashboard' %}" class="filter-form">
+        {{ filter_form.application_number }}
+        {{ filter_form.name }}
+        {{ filter_form.city }}
+        {{ filter_form.status }}
+        <button type="submit" class="btn">Filter</button>
+    </form>
+</div>
+
+<table class="dashboard-table">
     <thead>
         <tr>
             <th>Username</th>
@@ -21,14 +47,18 @@
         {% for permit in permits %}
         <tr>
             <td>{{ permit.user.username }}</td>
-            <td>{{ permit.application_number }}</td>
+            <td><a href="{% url 'myapp:application_details' permit.id %}">{{ permit.application_number }}</a></td>
             <td>{{ permit.name }}</td>
             <td>{{ permit.city }}</td>
             <td>{{ permit.application_status }}</td>
             <td>
-                <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> |
-                <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a>
+                <a href="{% url 'myapp:admin_approve_permit' permit.id %}" class="action-link">Approve</a> |
+                <a href="{% url 'myapp:admin_reject_permit' permit.id %}" class="action-link">Reject</a>
             </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No permits found.</td>
         </tr>
         {% endfor %}
     </tbody>

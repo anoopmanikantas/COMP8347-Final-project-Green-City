@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, \
+from .forms import BuildingPermitForm, SearchForm, FilterForm, AdminLoginForm, AdminSignupForm, \
+    CustomAuthenticationForm, \
     CustomUserCreationForm, ContactForm
 from .models import BuildingPermit, CustomUser
 from .respository import Repository
@@ -99,12 +100,37 @@ def adminsignup(request):
 @login_required
 @user_passes_test(lambda u: u.is_admin)
 def admin_dashboard(request):
-    query = request.GET.get('query', '')
-    if query:
-        permits = BuildingPermit.objects.filter(name__icontains=query) | BuildingPermit.objects.filter(application_number__icontains=query)
-    else:
-        permits = BuildingPermit.objects.all()
-    return render(request, 'admin/admin_dashboard.html', {'permits': permits})
+    search_form = SearchForm(request.GET)
+    filter_form = FilterForm(request.GET)
+    permits = BuildingPermit.objects.all()
+    total_applications = permits.count()
+
+    if search_form.is_valid():
+        query = search_form.cleaned_data['query']
+        if query:
+            permits = permits.filter(
+                application_number__icontains=query) | permits.filter(
+                name__icontains=query) | permits.filter(
+                city__icontains=query)
+
+    if filter_form.is_valid():
+        if filter_form.cleaned_data.get('application_number'):
+            permits = permits.filter(application_number=filter_form.cleaned_data['application_number'])
+        if filter_form.cleaned_data.get('name'):
+            permits = permits.filter(name__icontains=filter_form.cleaned_data['name'])
+        if filter_form.cleaned_data.get('city'):
+            permits = permits.filter(city__icontains=filter_form.cleaned_data['city'])
+        if filter_form.cleaned_data.get('status'):
+            permits = permits.filter(application_status=filter_form.cleaned_data['status'])
+
+    context = {
+        'search_form': search_form,
+        'filter_form': filter_form,
+        'permits': permits,
+        'total_applications': total_applications,
+    }
+
+    return render(request, 'admin/admin_dashboard.html', context)
 
 
 @login_required
@@ -125,6 +151,13 @@ def admin_reject_permit(request, permit_id):
     permit.save()
     messages.success(request, f'Application {permit.application_number} rejected.')
     return redirect('myapp:admin_dashboard')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def application_details(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    return render(request, 'admin/application_details.html', {'permit': permit})
 
 
 def privacy_policy(request):

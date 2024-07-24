@@ -1,0 +1,27 @@
+
+{% load static %}
+
+{% block title %}Application Details{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'admin/application_details.css' %}">
+
+<div class="details-header">
+    <h1>Application Details</h1>
+</div>
+
+<div class="details-content">
+    <p><strong>Username:</strong> {{ permit.user.username }}</p>
+    <p><strong>Application Number:</strong> {{ permit.application_number }}</p>
+    <p><strong>Name:</strong> {{ permit.name }}</p>
+    <p><strong>City:</strong> {{ permit.city }}</p>
+    <p><strong>Status:</strong> {{ permit.application_status }}</p>
+    <p><strong>Date:</strong> {{ permit.date }}</p>
+    <!-- Add other fields as needed -->
+</div>
+
+<div class="actions">
+    <a href="{% url 'myapp:admin_approve_permit' permit.id %}" class="btn">Approve</a>
+    <a href="{% url 'myapp:admin_reject_permit' permit.id %}" class="btn">Reject</a>
+</div>
+{% endblock %}
