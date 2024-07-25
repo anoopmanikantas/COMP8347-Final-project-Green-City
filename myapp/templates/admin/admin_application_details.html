@@ -26,6 +26,11 @@
             <a href="{{ permit.land_purchase_record.url }}" target="_blank" class="document-link">View Land Record</a>
         </div>
         
+        <div class="actions">
+            <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> 
+            <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a>
+        </div>
+
         <a href="{% url 'myapp:admin_dashboard' %}" class="back-link">Back to Dashboard</a>
     </div>
 </body>
