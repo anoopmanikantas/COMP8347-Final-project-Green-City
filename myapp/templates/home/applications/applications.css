@@ -7,14 +7,14 @@
     position:relative;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     margin-left: 16px;
     margin-right: 16px;
 }
 
 .search-form {
-    width: 85%;
+    width: 90%;
     border-radius: 6px;
     transition: all 0.3s ease;
     height: 30px;
@@ -206,3 +206,14 @@
     text-align: center;
 }
 
+.search-input {
+    background-image: url("search.png");
+    /*width: 24px;*/
+    /*height: auto;*/
+    background-size: 24px auto;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-origin: content-box;
+    /*background-clip: content-box;*/
+    padding-right: 16px;
+}

@@ -10,7 +10,6 @@
     <div class="search-container">
         <form id="searchForm" method="GET" action="{% url 'myapp:home' %}">
             {{ form.query }}
-            <button type="submit" class="search-form-submit-button">Search</button>
         </form>
     </div>
     {% if result_count != 0 %}
@@ -46,6 +45,15 @@
 $(document).ready(function($) {
     $(".result-item").click(function() {
         window.location = $(this).data("href");
+    });
+});
+
+$(document).ready(function() {
+    $(".search-input").on('keypress', function(e) {
+        if (e.which == 13) {  // Detect Enter key press
+            $("#searchForm").submit();  // Submit the form
+            return false;  // Prevent the default action
+        }
     });
 });
 </script>
