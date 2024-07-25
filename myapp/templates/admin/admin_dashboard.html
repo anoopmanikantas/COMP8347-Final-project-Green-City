@@ -1,36 +1,59 @@
-{% block title %}Admin Dashboard{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_dashboard.css' %}">
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+    <div class="search-filter-container">
+        <form class="search-form" method="get" action="{% url 'myapp:admin_dashboard' %}">
+            <input type="text" name="query" placeholder="Search by name or application number">
+            <button type="submit">Search</button>
+        </form>
 
-{% block content %}
-<h2>Admin Dashboard</h2>
-<form method="get" action="{% url 'myapp:admin_dashboard' %}">
-    <input type="text" name="query" placeholder="Search by name or application number">
-    <button type="submit">Search</button>
-</form>
-<table>
-    <thead>
-        <tr>
-            <th>Username</th>
-            <th>Application Number</th>
-            <th>Name</th>
-            <th>City</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for permit in permits %}
-        <tr>
-            <td>{{ permit.user.username }}</td>
-            <td>{{ permit.application_number }}</td>
-            <td>{{ permit.name }}</td>
-            <td>{{ permit.city }}</td>
-            <td>{{ permit.application_status }}</td>
-            <td>
-                <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> |
-                <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+        <form class="filter-form" method="get" action="{% url 'myapp:admin_dashboard' %}">
+            <label for="application_number">Application Number:</label>
+            <input type="text" name="application_number" placeholder="Application Number">
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="Name">
+            <label for="city">City:</label>
+            <input type="text" name="city" placeholder="City">
+            <label for="status">Status:</label>
+            <select name="status">
+                <option value="">All Statuses</option>
+                <option value="submitted">Submitted</option>
+                <option value="in progress">In Progress</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <h3 class="total-applications">Total Applications: {{ total_applications }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Application Number</th>
+                <th>Status</th>
+                <th>Submitted Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for permit in permits %}
+                <tr>
+                    <td>{{ permit.usr.id }}</td>
+                    <td>{{ permit.usr.username }}</td>
+                    <td><a href="{% url 'myapp:application_details' permit.id %}">{{ permit.application_number }}</a></td>
+                    <td>{{ permit.application_status }}</td>
+                    <td>{{ permit.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

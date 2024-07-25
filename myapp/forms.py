@@ -137,8 +137,47 @@ class SearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'search-form',
-                'placeholder': "Enter name, application status or application reference number to search...",
+                'placeholder': "Enter name, application number to search...",
             }
         ),
         label='Search Applications',
+    )
+
+
+class FilterForm(forms.Form):
+    application_number = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'filter-input',
+            'placeholder': 'Application Number'
+        }),
+        label='Application Number'
+    )
+    name = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'filter-input',
+            'placeholder': 'Name'
+        }),
+        label='Name'
+    )
+    city = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'filter-input',
+            'placeholder': 'City'
+        }),
+        label='City'
+    )
+    status = forms.ChoiceField(
+        required=False,
+        choices=[
+            ('', 'All Statuses'),
+            ('submitted', 'Submitted'),
+            ('in progress', 'In Progress'),
+            ('approved', 'Approved'),
+            ('rejected', 'Rejected'),
+        ],
+        widget=forms.Select(attrs={'class': 'filter-select'}),
+        label='Status'
     )
