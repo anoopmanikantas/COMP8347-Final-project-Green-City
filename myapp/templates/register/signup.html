@@ -1,22 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaf Now - Sign Up</title>
+    <title>Login/Signup Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'register/signup.css' %}">
 </head>
 <body>
-    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-10">
-            <h2>Create Account</h2>
-            <form class="p-4 bg-white rounded shadow-sm" method="POST">
+    <div class="cont">
+        
+        <div class="login-section">
+            <h2>Sign in</h2>
+            <form class="form-container" method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-success btn-lg btn-block">Create Account</button>
-                <p class="mt-3">Already have an account? <a href="/login">Login</a></p>
-            </form>
+                {{ form.username}}
+                {{ form.first_name}}
+                {{ form.last_name}}
+                {{ form.email}}
+                {{ form.phone}}
+                {{ form.password1}}
+                {{ form.password2}}
+                
+                <button type="submit" class="login-btn btn btn-success">Sign Up</button>
+		    </form>
+            <div>
+                <p> Or Sign in with social platforms</p>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="signup-section">
+            <h2>One of us ?</h2>
+            <button onclick="window.location.href='/login'" class="signup-btn">Login</button>
+            <img src="{% static 'planting2.png' %}" alt="Planting Image">
         </div>
     </div>
 </body>
