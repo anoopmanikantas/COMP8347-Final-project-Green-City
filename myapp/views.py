@@ -52,7 +52,7 @@ def home(request):
 
 
 def user_profile(request):
-    return render(request, 'user_profile/user_profile.html')
+    return render(request, 'user_profile/user_profile.html', {'user': request.user})
 
 
 def building_permit_details(request):

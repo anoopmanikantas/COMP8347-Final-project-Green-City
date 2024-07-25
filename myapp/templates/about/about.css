@@ -1,27 +1,144 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+
+
+.content {
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 
-.about-us-section, .seed_link-section {
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
     text-align: center;
-    padding: 50px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: white;
+}
+
+.values-icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.value-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.value-item img {
+    width: 100%;
+    height: auto;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.team-grid .member {
+    text-align: center;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.member-names-li, .member-names {
+    color: #666;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    text-align: left;
+}
+
+
+.team-grid .member img {
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.team-grid .member h3 {
+    margin: 10px 0 5px;
+}
+
+.team-grid .member .bio {
+    color: #666;
+}
+
+.timeline {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.timeline-event {
+    margin-bottom: 20px;
+}
+
+.timeline-event h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+.timeline-event p {
+    margin: 5px 0 0;
+    color: #333;
+}
+
+.about-us-h1, .about-us-ref {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
 }
 
 .about-us-section {
     background-color: #fff;
+    text-align: center;
+    padding: 50px 20px;
 }
 
 .about-us-section h2 {
     color: #4CAF50;
     font-size: 36px;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
 }
 
 .about-us-section h3 {
     font-size: 24px;
     color: #666;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
 }
 
 .about-us-section p {
@@ -29,39 +146,50 @@ body {
     line-height: 1.6;
     color: #333;
     max-width: 800px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
 }
 
 .seed_link-section {
-    background-image: url('soil.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+    background-color: #ffffff;
+    padding-left: 20px;
 }
 
 .seed_link-section h2 {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     font-size: 36px;
-    color: #4CAF50;
+    font-weight: 500;
+    color: #1d5b1f;
+    text-align: center;
 }
 
-.seed_link-section h3 {
+.seed_link-section h3,  .about-us-h3 {
     font-size: 24px;
+    font-weight: 500;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
+    text-align: center;
+    color: #666;
 }
 
 .seed_link-section p {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     max-width: 800px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px;
+    font-weight: 500;
 }
 
 .seed_link-section button {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     padding: 10px 20px;
     background-color: #4CAF50;
     color: #fff;
     border: none;
     font-size: 16px;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .seed_link-section button:hover {
