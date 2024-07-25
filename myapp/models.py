@@ -54,14 +54,15 @@ class ContactModel(models.Model):
 
 
 def user_id_proof_path(instance, filename):
-    return f'id_proofs/{instance.user.id}/{filename}'
+    return f'id_proofs/{instance.usr.id}/{filename}'
 
 
 def user_land_records_path(instance, filename):
-    return f'land_records/{instance.user.id}/{filename}'
+    return f'land_records/{instance.usr.id}/{filename}'
 
 
 class BuildingPermit(models.Model):
+
     AREA_CHOICES = [
         ('0-0.3', '0<0.3'),
         ('0.3-0.5', '0.3<0.5'),
@@ -95,6 +96,7 @@ class BuildingPermit(models.Model):
     application_status = models.CharField(max_length=20, choices=__application_status_options, default="submitted")
     date = models.CharField(max_length=50, default=str(datetime.now().strftime("%B %d, %Y")))
     user_id = models.PositiveIntegerField(default=1)
+    usr = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Building Permit for {self.name}"

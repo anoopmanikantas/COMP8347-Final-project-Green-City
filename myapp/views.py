@@ -190,6 +190,7 @@ def building_permit_application(request):
         form = BuildingPermitForm(request.POST, request.FILES)
         if form.is_valid():
             permit = form.save(commit=False)
+            permit.usr = request.user
             permit.trees_required = calculate_trees(permit.area, permit.floors)
             permit.save()
             return render(

@@ -70,6 +70,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'phone', 'password1', 'password2')
 
+
 #User Login
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
@@ -84,6 +85,7 @@ class CustomAuthenticationForm(AuthenticationForm):
             'class': 'form-control'
         })
     )
+
 
 class BuildingPermitForm(forms.ModelForm):
     class Meta:
