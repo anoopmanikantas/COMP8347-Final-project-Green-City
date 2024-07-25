@@ -48,7 +48,7 @@
                 <tr>
                     <td>{{ permit.usr.id }}</td>
                     <td>{{ permit.usr.username }}</td>
-                    <td><a href="{% url 'myapp:application_details' permit.id %}">{{ permit.application_number }}</a></td>
+                    <td><a href="{% url 'myapp:admin_application_details' permit.id %}">{{ permit.application_number }}</a></td>
                     <td>{{ permit.application_status }}</td>
                     <td>{{ permit.date }}</td>
                 </tr>
