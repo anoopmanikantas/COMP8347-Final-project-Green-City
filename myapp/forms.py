@@ -98,7 +98,7 @@ class SearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'search-form',
-                'placeholder': "Enter name, application status or application reference number to search...",
+                'style': 'display:none;',
             }
         ),
         label='Search Applications',
@@ -142,3 +142,5 @@ class FilterForm(forms.Form):
         widget=forms.Select(attrs={'class': 'filter-select'}),
         label=''
     )
+
+

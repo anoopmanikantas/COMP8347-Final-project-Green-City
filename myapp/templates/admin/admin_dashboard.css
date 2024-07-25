@@ -1,78 +1,81 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #e8f5e9; /* Light green background */
+    color: #2e7d32; /* Dark green text */
+    margin: 0;
+    padding: 0;
 }
 
-.dashboard-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
+h2, h3 {
     text-align: center;
+    color: #1b5e20; /* Darker green for headings */
 }
 
-.summary {
-    text-align: center;
+.search-container {
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
 }
 
-.search-section, .filter-section {
-    margin: 20px;
-    text-align: center;
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.search-form, .filter-form {
-    display: inline-block;
+.form-group {
+    margin: 10px;
 }
 
-.search-form input, .filter-form input, .filter-form select {
-    padding: 5px;
-    margin: 5px;
+.search-form input[type="text"], .search-form select {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #1b5e20;
     border-radius: 5px;
-    border: 1px solid #ccc;
 }
 
-.btn {
-    padding: 5px 10px;
-    background-color: #4CAF50;
+.search-button {
+    padding: 10px 20px;
+    background-color: #388e3c; /* Green button */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #45a049;
+.search-button:hover {
+    background-color: #2e7d32; /* Darker green on hover */
 }
 
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
+table {
+    width: 80%;
     margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-table th, .dashboard-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+th, td {
+    padding: 15px;
+    border: 1px solid #1b5e20;
+    text-align: left;
 }
 
-.dashboard-table th {
-    background-color: #f2f2f2;
-    color: black;
+th {
+    background-color: #388e3c; /* Green header */
+    color: white;
 }
 
-.dashboard-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+tr:nth-child(even) {
+    background-color: #f1f8e9; /* Light green for even rows */
 }
 
-.dashboard-table tr:hover {
-    background-color: #ddd;
-}
-
-.action-link {
-    color: #4CAF50;
+a {
+    color: #388e3c; /* Green links */
     text-decoration: none;
 }
 
-.action-link:hover {
+a:hover {
     text-decoration: underline;
 }

@@ -123,6 +123,10 @@ def admin_dashboard(request):
         if filter_form.cleaned_data.get('status'):
             permits = permits.filter(application_status=filter_form.cleaned_data['status'])
 
+    for permit in permits:
+        user = CustomUser.objects.get(pk=permit.user_id)
+        permit.username = user.username
+
     context = {
         'search_form': search_form,
         'filter_form': filter_form,
