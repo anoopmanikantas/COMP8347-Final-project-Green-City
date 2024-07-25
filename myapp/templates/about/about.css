@@ -5,13 +5,226 @@ body {
     background-color: #f5f5f5;
 }
 
-.about-us-section, .seed_link-section {
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+.navbar .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.navbar .nav-img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.content {
+    padding: 20px;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
     text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: white;
+}
+
+.values-icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.value-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.value-item img {
+    width: 100%;
+    height: auto;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.team-grid .member {
+    text-align: center;
+    max-width: 250px;
+    margin-bottom: 20px;
+}
+
+.team-grid .member img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.team-grid .member h3 {
+    margin: 10px 0 5px;
+}
+
+.team-grid .member .bio {
+    color: #666;
+}
+
+.timeline {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.timeline-event {
+    margin-bottom: 20px;
+}
+
+.timeline-event h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+.timeline-event p {
+    margin: 5px 0 0;
+    color: #333;
+}
+
+.contact-section {
+    background-color: #4CAF50;
+    color: white;
     padding: 50px 20px;
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.contact-item {
+    max-width: 200px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-item img {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.footer-logo img {
+    width: 100px;
+    height: auto;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-links .footer-column {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.footer-links .footer-column a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+}
+
+.footer-links .footer-column a:hover {
+    text-decoration: underline;
+}
+
+.footer-social a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer-social img {
+    width: 24px;
+    height: auto;
+}
+
+.footer-bottom {
+    border-top: 1px solid #555;
+    padding-top: 10px;
 }
 
 .about-us-section {
     background-color: #fff;
+    text-align: center;
+    padding: 50px 20px;
 }
 
 .about-us-section h2 {
@@ -29,19 +242,21 @@ body {
     line-height: 1.6;
     color: #333;
     max-width: 800px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px;
 }
 
-.seed_link-section {
-    background-image: url('soil.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-}
+/*.seed_link-section {*/
+/*    background-image: url("{{ static 'soil.jpg' }}");*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    text-align: center;*/
+/*    color: #fff;*/
+/*    padding: 50px 20px;*/
+/*}*/
 
 .seed_link-section h2 {
     font-size: 36px;
-    color: #4CAF50;
+    color: #fff;
 }
 
 .seed_link-section h3 {
@@ -52,7 +267,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
     max-width: 800px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px;
 }
 
 .seed_link-section button {

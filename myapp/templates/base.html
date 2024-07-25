@@ -17,11 +17,95 @@
             <a href="{% url 'myapp:about' %}">About Us</a>
             <a href="{% url 'myapp:privacy_policy' %}">Privacy Policy</a>
         </div>
-        <a href="{% url 'myapp:user_profile' %}" class="profile"><img src="{% static 'profile.png' %}" alt="Profile"></a>
+        <a href="{% url 'myapp:user_profile' %}" class="profile">
+            <img src="{% static 'profile.png' %}" alt="Profile">
+        </a>
     </div>
 
     <div class="content">
         {% block content %}
+        <header>
+            <h1>About Us</h1>
+            <nav>
+                <ul>
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#values">Values</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="mission" class="parallax">
+            <h2>Our Mission</h2>
+            <p>We strive to innovate and lead in our industry, providing exceptional services and products to our customers.</p>
+            <video controls>
+                <source src="{% static 'company_intro.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <section id="values">
+            <h2>Our Values</h2>
+            <p>We are committed to integrity, quality, and customer satisfaction.</p>
+            <div class="values-icons">
+                <div class="value-item">
+                    <img src="{% static 'integrity.png' %}" alt="Integrity">
+                    <p>Integrity</p>
+                </div>
+                <div class="value-item">
+                    <img src="{% static 'quality.png' %}" alt="Quality">
+                    <p>Quality</p>
+                </div>
+                <div class="value-item">
+                    <img src="{% static 'customer.jpg' %}" alt="Customer Satisfaction">
+                    <p>Customer Satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="member">
+                    <img src="{% static 'member1.png' %}" alt="Usama Mir">
+                    <h3>Usama Mir</h3>
+                    <p>CEO</p>
+                    <p class="bio">Usama Mir has over 20 years of experience in the industry...</p>
+                    <a href="https://www.linkedin.com/in/usama-mir" target="_blank">LinkedIn</a>
+                </div>
+                <div class="member">
+                    <img src="{% static 'member2.jpg' %}" alt="Jane Smith">
+                    <h3>Jane Smith</h3>
+                    <p>CTO</p>
+                    <p class="bio">Jane leads our technology initiatives with a focus on innovation...</p>
+                    <a href="https://www.linkedin.com/in/jane-smith" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-event">
+                    <h3>2000</h3>
+                    <p>Company founded.</p>
+                </div>
+                <div class="timeline-event">
+                    <h3>2005</h3>
+                    <p>Expanded to new markets.</p>
+                </div>
+                <div class="timeline-event">
+                    <h3>2010</h3>
+                    <p>Launched new product line.</p>
+                </div>
+                <div class="timeline-event">
+                    <h3>2020</h3>
+                    <p>Reached 1 million customers.</p>
+                </div>
+            </div>
+        </section>
         {% endblock %}
     </div>
 
