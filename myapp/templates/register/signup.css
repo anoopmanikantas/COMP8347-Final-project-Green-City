@@ -1,0 +1,108 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+
+.signup-section {
+    background-color: #4caf50;
+    color: white;
+    padding: 40px;
+    width: 70%;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    border-bottom-left-radius: 1000px;
+}
+
+.signup-section img {
+    position: absolute;
+    bottom: 10px;
+    left: 250px;
+    width: 400px;
+    height: auto;
+}
+
+.signup-btn {
+    background-color: white;
+    color: #4caf50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.login-section {
+    padding: 10%;
+    width: 50%;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 1px 50px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: #4caf50;
+    font-size: 24px;
+    border: 3px solid grey;
+    padding: 10px 20px;
+    border-radius: 80%;
+
+}
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container input[type="phone"]{
+    margin-top: 20px;
+    margin-left: 50px;
+    padding: 5px;
+    border: none;
+    width: 300px;
+    background-color: #ededed;
+    border-radius: 15px;
+}
+
+.form-container input[type="text"]::placeholder,
+.form-container input[type="password"]::placeholder {
+    color: grey;
+    font-size: 16px;
+    padding: 2%;
+}

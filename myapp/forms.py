@@ -23,9 +23,48 @@ class AdminLoginForm(AuthenticationForm):
 
 #User Signup
 class CustomUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True, help_text='Required')
-    last_name = forms.CharField(max_length=30, required=True, help_text='Required')
-    email = forms.EmailField(max_length=254, required=True, help_text='Required')
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Username',
+            'class': 'form-control'
+        })
+    )
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'First Name',
+            'class': 'form-control'
+        })
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Last Name',
+            'class': 'form-control'
+        })
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'placeholder': 'Email',
+            'class': 'form-control'
+        })
+    )
+    phone = forms.IntegerField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Phone Number',
+            'class': 'form-control'
+        })
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'New Password',
+            'class': 'form-control'
+        })
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Confirm Password',
+            'class': 'form-control'
+        })
+    )
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
