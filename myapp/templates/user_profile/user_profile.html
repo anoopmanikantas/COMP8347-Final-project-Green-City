@@ -4,5 +4,14 @@
 
 {% block content %}
     <h1>User Profile</h1>
-    <p>This is the user profile content.</p>
+    <p>Username: {{ user.username }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email ID: {{ user.email }}</p>
+    <p>Phone: {{ user.phone }}</p>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
 {% endblock %}
