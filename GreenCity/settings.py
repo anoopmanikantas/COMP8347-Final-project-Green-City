@@ -118,11 +118,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL = "/login/"
 STATIC_URL = '/myapp/templates/'
 STATIC_ROOT = '/myapp/templates/'
 STATICFILES_DIRS = [
     "myapp/templates/",
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 
 APPEND_SLASH = True
 

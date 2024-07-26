@@ -16,17 +16,19 @@ urlpatterns = [
     path('adminlogin/', views.adminlogin, name='adminlogin'),
     path('adminsignup/', views.adminsignup, name='adminsignup'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
-    path('admin/approve/<int:permit_id>/', views.admin_approve_permit, name='admin_approve_permit'),
-    path('admin/reject/<int:permit_id>/', views.admin_reject_permit, name='admin_reject_permit'),
+    path('admin_application_details/<int:permit_id>/', views.admin_application_details, name='admin_application_details'),
+    path('admin_approve/<int:permit_id>/', views.admin_approve_permit, name='admin_approve_permit'),
+    path('admin_reject/<int:permit_id>/', views.admin_reject_permit, name='admin_reject_permit'),
     path('about/', views.about, name='about'),
     path('privacy/', views.privacy_policy, name='privacy_policy'),
     path('login/', views.user_login, name='login'),
     path('signup/', views.signup, name='signup'),
     path('apply/', views.building_permit_application, name='building_permit_application'),
-    path('application_details/<int:permit_id>/', views.application_details, name='application_details'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
     path('contact/', views.contact_view, name='contact'),
     # Add other paths as needed
+
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name ="register/password_reset.html"), name='reset_password'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name = "register/password_reset_sent.html"), name='password_reset_done'),
