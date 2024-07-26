@@ -1,0 +1,44 @@
+<!-- templates/admin/contact_info.html -->
+{% load static %}
+{% block content %}
+
+<head>
+    <title>Contact Info</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_contact_info.css' %}">
+</head>
+<body>
+<div class="top-bar">
+    <img src="{% static 'admin/adminlogo.png' %}" alt="Logo">
+</div>
+    <div class="container">
+        <h1>User Contact Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.id }}</td>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td>{{ contact.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+<div class="footer-bottom">
+    <p>© 2024 Green City is part of University of Windsor Project</p>
+    <p>Please review our updated Terms of Service</p>
+</div>
+    
+{% endblock %}

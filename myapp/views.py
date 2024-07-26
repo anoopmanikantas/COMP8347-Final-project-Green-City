@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, \
     CustomUserCreationForm, ContactForm, FilterForm, AdditionalDocumentsUploadForm
-from .models import BuildingPermit, CustomUser
+from .models import BuildingPermit, CustomUser, ContactModel
 from .respository import Repository
 
 repository = Repository()
@@ -110,6 +110,20 @@ def adminlogin(request):
     else:
         form = AdminLoginForm()
     return render(request, 'admin/admin_login.html', {'form': form})
+
+
+
+def contact_list_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ad')  # Redirect to the same page or another page after successful submission
+    else:
+        form = ContactForm()
+
+    contacts = ContactModel.objects.all()
+    return render(request, 'admin/admincontactinfo.html', {'contacts': contacts, 'form': form})
 
 
 def adminsignup(request):
@@ -260,7 +274,7 @@ def building_permit_application(request):
             permit.usr = request.user
             permit.trees_required = calculate_trees(permit.area, permit.floors)
             # TODO: Comment The Line Below Before Pushing The Code
-            permit.application_status = 'additional'
+            # permit.application_status = 'additional'
             permit.save()
             return render(
                 request,

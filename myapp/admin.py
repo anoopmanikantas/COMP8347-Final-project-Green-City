@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
-
+from .models import CustomUser, ContactModel
 
 # Register your models here.
 # admin.site.register(AdminUser)
 admin.site.register(CustomUser)
+admin.site.register(ContactModel)
+
