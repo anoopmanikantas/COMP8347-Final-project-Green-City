@@ -28,6 +28,8 @@ urlpatterns = [
     path('view_all_applications', views.view_all_applications, name='view_all_applications'),
     path('download_id_proof/<int:permit_id>/', views.download_id_proof, name='download_id_proof'),
     path('download_land_record/<int:permit_id>/', views.download_land_record_document, name='download_land_record_document'),
+    path('download_additional_document_1/<int:permit_id>/', views.download_additional_document_1, name='download_additional_document_1'),
+    path('download_additional_document_2/<int:permit_id>/', views.download_additional_document_2, name='download_additional_document_2'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
     path('contact/', views.contact_view, name='contact'),
     # Add other paths as needed
