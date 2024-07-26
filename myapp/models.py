@@ -100,3 +100,4 @@ class BuildingPermit(models.Model):
 
     def __str__(self):
         return f"Building Permit for {self.name}"
+ 
