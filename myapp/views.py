@@ -148,14 +148,14 @@ def admin_dashboard(request):
 
 @login_required
 @user_passes_test(lambda u: u.is_admin)
-def application_details(request, permit_id):
+def admin_application_details(request, permit_id):
     permit = get_object_or_404(BuildingPermit, pk=permit_id)
     user = permit.usr
     context = {
         'permit': permit,
         'user': user
     }
-    return render(request, 'admin/application_details.html', context)
+    return render(request, 'admin/admin_application_details.html', context)
 
 
 @login_required

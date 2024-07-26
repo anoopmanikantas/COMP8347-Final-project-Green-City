@@ -1,17 +1,59 @@
 {% extends 'base.html' %}
-
-{% block title %}User Profile - My Website{% endblock %}
-
+{% load static %}
 {% block content %}
-    <h1>User Profile</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Email ID: {{ user.email }}</p>
-    <p>Phone: {{ user.phone }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user_profile/user_profile.css' %}">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="profile-container">
+        <h1><strong>{{ user.first_name }}{{ user.last_name }}</strong></h1>
+        <table>
+            <tr>
+                <td><strong>Username:</strong></td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td><strong>First Name:</strong></td>
+                <td>{{ user.first_name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Last Name:</strong></td>
+                <td>{{ user.last_name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email ID:</strong></td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td><strong>Phone:</strong></td>
+                <td>{{ user.phone }}</td>
+            </tr>
+        </table>
+        
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <div class="logout-button">
+                <button type="submit" class="btn btn-success">Logout</button>
+            </div>
+        </form>
+    </div>
 
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
+</body>
+</html>
+
+
+
+
