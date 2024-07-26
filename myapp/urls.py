@@ -24,6 +24,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('apply/', views.building_permit_application, name='building_permit_application'),
     path('application_details/<int:permit_id>/', views.application_details, name='application_details'),
+    path('view_all_applications', views.view_all_applications, name='view_all_applications'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
     path('contact/', views.contact_view, name='contact'),
     # Add other paths as needed
