@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'user/user_dashboard.css' %}">
+</head>
+<body>
+    <h2>User Dashboard</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Application Number</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for permit in permits %}
+                <tr>
+                    <td>{{ permit.application_number }}</td>
+                    <td>{{ permit.application_status }}</td>
+                    <td>
+                        {% if permit.application_status == 'rejected' or permit.application_status == 'additional' %}
+                            <a href="{% url 'myapp:resubmit_application' permit.id %}">Resubmit</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'myapp:logout' %}">Logout</a>
+</body>
+</html>

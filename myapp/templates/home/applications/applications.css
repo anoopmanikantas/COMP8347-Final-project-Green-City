@@ -4,6 +4,42 @@
     overflow-x: hidden;
 }
 
+.additional-form p {
+    font-weight: bold;
+}
+
+.additional-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.additional-form .submit {
+    grid-column: span 2;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.additional-form .submit:hover {
+    background-color: #45a049;
+}
+
+form button {
+    grid-column: span 2;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
 .main-dashboard-container {
     width: 100%;
     display: flex;
@@ -285,6 +321,7 @@
 .column {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center; /* This will center the items vertically */
 }
 
@@ -292,15 +329,17 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 50%;
+    width: 80%;
 }
 
 .cell-label, .cell-data {
-    width: 45%; /* This will give each cell equal width */
+    width: 100%; /* This will give each cell equal width */
+    /*margin-right: 10px;*/
 }
 
 .cell-label {
     font-weight: bold;
+    /*width: 100%;*/
 }
 
 

@@ -1,0 +1,125 @@
+/* static/css/contact_info.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('admintree.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.top-bar {
+    background-color: #4CAF50; /* Adjust color as needed */
+    padding: 10px 20px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.top-bar img {
+     height: 25px; /* Decrease the height to make the logo smaller */
+    width: auto;  /* Ensure logo fits within the new height */
+}
+
+.top-bar * {
+    margin: 0; /* Ensure no margin is causing extra height */
+}
+
+.footer-bottom {
+    background-color: #0b360c; /* Semi-transparent black background */
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+
+.container {
+    width: 80%;
+    height: 400px;
+    /*max-width: 1000px;  !* Increase max width *!*/
+    /*min-height: 500px;  !* Set a minimum height *!*/
+    background: #ffffff;
+    padding: 40px;  /* Increase padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Slightly bigger shadow */
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;  /* Increase bottom margin */
+    font-size: 2.5em;  /* Increase font size */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 20px;  /* Increase padding for table cells */
+    text-align: left;
+}
+
+th {
+    background-color: #28a745;
+    color: white;
+}
+
+td {
+    background-color: #fafbfc;
+    color: #666;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+tr:nth-child(even) td {
+    background-color: #f4f6f8;
+}
+
+tr:hover td {
+    background-color: #e9ecef;
+}
+
+td input {
+    width: 100%;
+    padding: 12px;  /* Increase padding for input fields */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 15px;  /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 2em;  /* Adjust font size for smaller screens */
+    }
+}

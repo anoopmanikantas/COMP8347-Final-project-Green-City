@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 import re
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import BuildingPermit, CustomUser, ContactModel
+from .models import user_additional_document_1_path, user_additional_records_2_path
 
 
 class AdminSignupForm(UserCreationForm):
@@ -156,6 +157,31 @@ class SearchForm(forms.Form):
         ),
         label='Search Applications',
     )
+
+
+class AdditionalDocumentsUploadForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        # This is to remove the ":" symbol from the end of the label
+        kwargs.setdefault('label_suffix', '')
+        super(AdditionalDocumentsUploadForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = BuildingPermit
+        fields = ['additional_document_1', 'additional_document_2']
+
+    def clean_additional_document_1(self):
+        additional_document = self.cleaned_data.get('additional_document_1', False)
+        if additional_document:
+            if not additional_document.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+                raise ValidationError('Govt Id Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
+        return additional_document
+
+    def clean_land_purchase_record(self):
+        additional_document = self.cleaned_data.get('additional_document_2', False)
+        if additional_document:
+            if not additional_document.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+                raise ValidationError(' Land Record Purchase Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
+        return additional_document
 
 
 class FilterForm(forms.Form):

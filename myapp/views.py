@@ -1,12 +1,16 @@
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, \
-    CustomUserCreationForm, ContactForm, FilterForm
-from .models import BuildingPermit, CustomUser
+    CustomUserCreationForm, ContactForm, FilterForm, AdditionalDocumentsUploadForm
+from .models import BuildingPermit, CustomUser, ContactModel
 from .respository import Repository
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
 
 repository = Repository()
 
@@ -61,6 +65,26 @@ def view_all_applications(request):
                   )
 
 
+def download_id_proof(request, permit_id: int):
+    permit = get_object_or_404(BuildingPermit, id=permit_id)
+    return FileResponse(permit.government_id_proof.open(), as_attachment=True)
+
+
+def download_land_record_document(request, permit_id: int):
+    permit = get_object_or_404(BuildingPermit, id=permit_id)
+    return FileResponse(permit.land_purchase_record.open(), as_attachment=True)
+
+
+def download_additional_document_1(request, permit_id: int):
+    permit = get_object_or_404(BuildingPermit, id=permit_id)
+    return FileResponse(permit.additional_document_1.open(), as_attachment=True)
+
+
+def download_additional_document_2(request, permit_id: int):
+    permit = get_object_or_404(BuildingPermit, id=permit_id)
+    return FileResponse(permit.additional_document_2.open(), as_attachment=True)
+
+
 def user_profile(request):
     return render(request, 'user_profile/user_profile.html', {'user': request.user})
 
@@ -90,6 +114,19 @@ def adminlogin(request):
     else:
         form = AdminLoginForm()
     return render(request, 'admin/admin_login.html', {'form': form})
+
+
+def contact_list_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ad')  # Redirect to the same page or another page after successful submission
+    else:
+        form = ContactForm()
+
+    contacts = ContactModel.objects.all()
+    return render(request, 'admin/admincontactinfo.html', {'contacts': contacts, 'form': form})
 
 
 def adminsignup(request):
@@ -139,7 +176,7 @@ def admin_dashboard(request):
         'total_applications': total_applications,
     }
 
-    return render(request, 'admin/admin_dashboard.html', context)
+    return render(request, 'admin/admin_dashboard.html', {'permits': permits})
 
 
 @login_required
@@ -170,8 +207,62 @@ def admin_reject_permit(request, permit_id):
     permit = get_object_or_404(BuildingPermit, pk=permit_id)
     permit.application_status = 'rejected'
     permit.save()
+    send_rejection_email(permit.usr, permit)
     messages.success(request, f'Application {permit.application_number} rejected.')
     return redirect('myapp:admin_dashboard')
+
+
+def send_rejection_email(user, permit):
+    subject = 'Your Application Has Been Rejected'
+    html_message = render_to_string('emails/rejection_email.html', {'user': user, 'permit': permit})
+    plain_message = strip_tags(html_message)
+    from_email = settings.EMAIL_HOST_USER
+    to = user.email
+
+    send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
+
+def send_document_resubmit_email(user, permit):
+    subject = 'Document Resubmission Required'
+    html_message = render_to_string('emails/document_resubmit_email.html', {'user': user, 'permit': permit})
+    plain_message = strip_tags(html_message)
+    from_email = settings.EMAIL_HOST_USER
+    to = user.email
+
+    send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_request_document_resubmit(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit.application_status = 'additional'
+    permit.save()
+    send_document_resubmit_email(permit.usr, permit)
+    messages.success(request, f'Document resubmission requested for application {permit.application_number}.')
+    return redirect('myapp:admin_dashboard')
+
+
+@login_required
+def resubmit_application(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id, usr=request.user)
+    if request.method == 'POST':
+        form = BuildingPermitForm(request.POST, request.FILES, instance=permit)
+        if form.is_valid():
+            permit.application_status = 'submitted'
+            permit.is_resubmitted = True
+            form.save()
+            messages.success(request, 'Application resubmitted successfully.')
+            return redirect('myapp:user_dashboard')
+    else:
+        form = BuildingPermitForm(instance=permit)
+    return render(request, 'user/resubmit_application.html', {'form': form, 'permit': permit})
+
+
+@login_required
+def user_dashboard(request):
+    permits = BuildingPermit.objects.filter(usr=request.user)
+    return render(request, 'user/user_dashboard.html', {'permits': permits})
 
 
 def privacy_policy(request):
@@ -239,6 +330,8 @@ def building_permit_application(request):
             permit = form.save(commit=False)
             permit.usr = request.user
             permit.trees_required = calculate_trees(permit.area, permit.floors)
+            # TODO: Comment The Line Below Before Pushing The Code
+            # permit.application_status = 'additional'
             permit.save()
             return render(
                 request,
@@ -275,5 +368,35 @@ def contact_view(request):
 
 
 def application_details(request, permit_id: int) -> HttpResponse:
+    def _get_dict_using(application: BuildingPermit):
+        return {
+            'permit': application,
+            'is_additional_document_1_available': True if application.additional_document_1.name is not "" else False,
+            'is_additional_document_2_available': True if application.additional_document_2.name is not "" else False,
+        }
+
     permit = get_object_or_404(BuildingPermit, pk=permit_id, user_id=request.user.id)
-    return render(request, 'home/applications/application_details.html', {'permit': permit})
+    if permit.application_status == 'additional':
+        if request.method == 'POST':
+            form = AdditionalDocumentsUploadForm(request.POST, request.FILES, instance=permit)
+            if form.is_valid():
+                document = form.save(commit=False)
+                document.application_status = 'submitted'
+                document.save()
+                permit.additional_document_1 = document.additional_document_1
+                permit.additional_document_2 = document.additional_document_2
+                permit.save()
+                permit = get_object_or_404(BuildingPermit, pk=permit_id, user_id=request.user.id)
+                return render(
+                    request,
+                    template_name='home/applications/application_details.html',
+                    context=_get_dict_using(permit)
+                )
+        else:
+            form = AdditionalDocumentsUploadForm()
+        return render(request, 'home/applications/application_details.html', {'permit': permit, 'form': form})
+    return render(
+        request,
+        template_name='home/applications/application_details.html',
+        context=_get_dict_using(permit)
+    )

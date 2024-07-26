@@ -1,8 +1,63 @@
-{% block content %}
-<h2>Admin Signup</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-</form>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'admin/admin_signup.css' %}">
+    <style>
+        body {
+            background: url("{% static 'admin/admintree.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="{% static 'admin/adminlogo.png' %}" alt="Logo">
+    </div>
+    <div class="signup-container">
+        <h2>Admin Signup</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="username" id="id_username" required placeholder="Username" />
+                <label for="id_username">Username</label>
+            </div>
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <input type="text" name="first_name" id="id_first_name" required placeholder="First Name" />
+                    <label for="id_first_name">First Name</label>
+                </div>
+                <div class="form-group half-width">
+                    <input type="text" name="last_name" id="id_last_name" required placeholder="Last Name" />
+                    <label for="id_last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <input type="email" name="email" id="id_email" required placeholder="Email" />
+                    <label for="id_email">Email</label>
+                </div>
+                <div class="form-group half-width">
+                    <input type="text" name="phone" id="id_phone" required placeholder="Phone" />
+                    <label for="id_phone">Phone</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <input type="password" name="password1" id="id_password1" required placeholder="Password" />
+                    <label for="id_password1">Password</label>
+                </div>
+                <div class="form-group half-width">
+                    <input type="password" name="password2" id="id_password2" required placeholder="Confirm Password" />
+                    <label for="id_password2">Confirm Password</label>
+                </div>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div class="bottom-bar">
+        <p>© 2024 Green City is part of University of Windsor Project</p>
+        <p>Please review our updated Terms of Service</p>
+    </div>
+</body>
+</html>

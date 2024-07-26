@@ -1,8 +1,43 @@
+
+{% load static %}
 {% block content %}
-<h2>Admin Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+<link rel="stylesheet" href="{% static 'admin/admin_login.css' %}">
+<style>
+body {
+    background: url("{% static 'admin/admintree.png' %}") no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+</style>
+<div class="top-bar">
+    <img src="{% static 'admin/adminlogo.png' %}" alt="Logo">
+</div>
+<div class="login-container">
+    <h2>Admin Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" id="id_username" name="username" placeholder=" " />
+            <label for="id_username">Username</label>
+        </div>
+        <div class="form-group">
+            <input type="password" id="id_password" name="password" placeholder=" " />
+            <label for="id_password">Password</label>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+    <div class="footer-bottom">
+    <p>© 2024 Green City is part of University of Windsor Project</p>
+    <p>Please review our updated Terms of Service</p>
+</div>
 {% endblock %}
+
+
+
+
+
+
+
