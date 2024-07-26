@@ -76,11 +76,11 @@ class BuildingPermit(models.Model):
         ('7+', '>=7'),
     ]
 
-    __application_status_options = {
-        "submitted": "Submitted",
-        "in progress": "In Progress",
-        "approved": "Approved",
-    }
+    __application_status_options = [
+        ("submitted", "Submitted"),
+        ("in progress", "In Progress"),
+        ("approved", "Approved"),
+    ]
 
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=15)

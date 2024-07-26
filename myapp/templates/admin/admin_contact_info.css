@@ -1,0 +1,82 @@
+/* static/css/contact_info.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('admintree.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;  /* Increase max width */
+    min-height: 500px;  /* Set a minimum height */
+    background: #ffffff;
+    padding: 40px;  /* Increase padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Slightly bigger shadow */
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;  /* Increase bottom margin */
+    font-size: 2.5em;  /* Increase font size */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 20px;  /* Increase padding for table cells */
+    text-align: left;
+}
+
+th {
+    background-color: #28a745;
+    color: white;
+}
+
+td {
+    background-color: #fafbfc;
+    color: #666;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+tr:nth-child(even) td {
+    background-color: #f4f6f8;
+}
+
+tr:hover td {
+    background-color: #e9ecef;
+}
+
+td input {
+    width: 100%;
+    padding: 12px;  /* Increase padding for input fields */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 15px;  /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 2em;  /* Adjust font size for smaller screens */
+    }
+}

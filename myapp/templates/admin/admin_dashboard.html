@@ -7,6 +7,10 @@
 </head>
 <body>
     <h2>Admin Dashboard</h2>
+{#    <div class="additional-links">#}
+{#        <a href="{% static 'admin/admincontactinfo.html' %}">Contact Info</a>#}
+{#    </div>#}
+    
     <div class="search-filter-container">
         <form class="search-form" method="get" action="{% url 'myapp:admin_dashboard' %}">
             <input type="text" name="query" placeholder="Search by name or application number">
