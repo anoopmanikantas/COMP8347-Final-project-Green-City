@@ -99,6 +99,20 @@ class BuildingPermitForm(forms.ModelForm):
             'user_id': forms.HiddenInput(),
         }
 
+    def clean_government_id_proof(self):
+        government_id_proof = self.cleaned_data.get('government_id_proof', False)
+        if government_id_proof:
+            if not government_id_proof.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+                raise ValidationError('Govt Id Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
+        return government_id_proof
+
+    def clean_land_purchase_record(self):
+        land_purchase_record = self.cleaned_data.get('land_purchase_record', False)
+        if land_purchase_record:
+            if not land_purchase_record.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+                raise ValidationError(' Land Record Purchase Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
+        return land_purchase_record
+
     # Validation for Email and phone number
     def clean_mail_id(self):
         mail_id = self.cleaned_data['mail_id']
