@@ -10,6 +10,7 @@ from .respository import Repository
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.conf import settings
 from django.utils import timezone
 
 repository = Repository()
@@ -223,7 +224,7 @@ def send_rejection_email(user, permit):
     subject = 'Your Application Has Been Rejected'
     html_message = render_to_string('emails/rejection_email.html', {'user': user, 'permit': permit})
     plain_message = strip_tags(html_message)
-    from_email = config('arjun.patel100701@gmail.com')
+    from_email = settings.EMAIL_HOST_USER
     to = user.email
 
     send_mail(subject, plain_message, from_email, [to], html_message=html_message)
@@ -233,7 +234,7 @@ def send_document_resubmit_email(user, permit):
     subject = 'Document Resubmission Required'
     html_message = render_to_string('emails/document_resubmit_email.html', {'user': user, 'permit': permit})
     plain_message = strip_tags(html_message)
-    from_email = config('arjun.patel100701@gmail.com')
+    from_email = settings.EMAIL_HOST_USER
     to = user.email
 
     send_mail(subject, plain_message, from_email, [to], html_message=html_message)

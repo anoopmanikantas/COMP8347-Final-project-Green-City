@@ -25,7 +25,11 @@
                 {{ form.phone}}
                 {{ form.password1}}
                 {{ form.password2}}
-                
+                {% if form.field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.field_errors }}
+                    </div>
+                {% endif %}
                 <button type="submit" class="login-btn btn btn-success">Sign Up</button>
 		    </form>
             <div>
