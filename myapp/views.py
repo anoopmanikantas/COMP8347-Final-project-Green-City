@@ -11,44 +11,54 @@ from .respository import Repository
 repository = Repository()
 
 
+@login_required()
 def home(request):
-    building_permits_count = repository.get_building_permits()
-    form = SearchForm(request.GET or None)
-    results = []
-    message = ""
-    if form.is_valid():
-        query = form.cleaned_data['query']
-        # 1. Search for the name first if it exists.
-        building_permits = repository.get_building_permits(query=query, user_id=request.user.id)
-
-        if len(building_permits) != 0:
-            results = building_permits
-        else:
-            message = "No permits found"
-        # 3. else maintain empty result set and display the same.
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return render(
-            request,
-            'home/applications/applications_card.html',
-            {
-                "form": form,
-                "results": results,
-                'result_count': len(results),
-                'message': message,
-            }
-        )
+    repository.user_id = request.user.id
 
     return render(
         request,
         'home/home.html',
         {
-            "permits": building_permits_count,
-            "form": form,
-            'results': results,
-            'result_count': len(results),
-            'message': message,
+            'applications': repository.get_application_details()
         }
     )
+
+
+def view_all_applications(request):
+    repository.user_id = request.user.id
+    form = SearchForm(request.GET or None)
+    results = repository.get_all_building_permits()
+    message = ""
+    if len(results) == 0:
+        message = "No permits found"
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        # 1. Search for the name first if it exists.
+        building_permits = repository.get_building_permits(query=query)
+        results = building_permits
+        print(results)
+        if len(building_permits) == 0:
+            message = "No permits found"
+
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return render(
+                request,
+                'home/applications/view_all_applications.html',
+                {
+                    "form": form,
+                    "results": results,
+                    'result_count': len(results),
+                    'message': message,
+                }
+            )
+    return render(request, 'home/applications/view_all_applications.html',
+                  {
+                      "form": form,
+                      "results": results,
+                      'result_count': len(results),
+                      'message': message
+                  }
+                  )
 
 
 def user_profile(request):
