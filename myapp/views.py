@@ -5,12 +5,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupForm, CustomAuthenticationForm, \
     CustomUserCreationForm, ContactForm, FilterForm, AdditionalDocumentsUploadForm
-from .models import BuildingPermit, CustomUser, ContactModel
+from .models import BuildingPermit, CustomUser, ContactModel, UserHistory
 from .respository import Repository
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
+from django.utils import timezone
 
 repository = Repository()
 
@@ -18,14 +19,21 @@ repository = Repository()
 @login_required()
 def home(request):
     repository.user_id = request.user.id
+    today = timezone.now().date()
 
-    return render(
+    profile, _ = UserHistory.objects.get_or_create(user=request.user, visit_date=today)
+    profile.visits = 1
+    profile.save()
+
+    response = render(
         request,
         'home/home.html',
         {
             'applications': repository.get_application_details()
         }
     )
+    response.set_cookie(f'visited_user_{request.user.id}_{request.user.username}', 'true')
+    return response
 
 
 def view_all_applications(request):
