@@ -10,11 +10,51 @@ body {
     align-items: center;
     height: 100vh;
 }
+.top-bar {
+    background-color: #4CAF50; /* Adjust color as needed */
+    padding: 10px 20px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.top-bar img {
+     height: 25px; /* Decrease the height to make the logo smaller */
+    width: auto;  /* Ensure logo fits within the new height */
+}
+
+.top-bar * {
+    margin: 0; /* Ensure no margin is causing extra height */
+}
+
+.footer-bottom {
+    background-color: #0b360c; /* Semi-transparent black background */
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
 
 .container {
     width: 80%;
-    max-width: 1000px;  /* Increase max width */
-    min-height: 500px;  /* Set a minimum height */
+    height: 400px;
+    /*max-width: 1000px;  !* Increase max width *!*/
+    /*min-height: 500px;  !* Set a minimum height *!*/
     background: #ffffff;
     padding: 40px;  /* Increase padding */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Slightly bigger shadow */
@@ -24,6 +64,9 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+
+
 
 h1 {
     color: #333;

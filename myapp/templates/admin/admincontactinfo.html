@@ -1,13 +1,15 @@
 <!-- templates/admin/contact_info.html -->
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html>
+
 <head>
     <title>Contact Info</title>
     <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_contact_info.css' %}">
 </head>
 <body>
+<div class="top-bar">
+    <img src="{% static 'admin/adminlogo.png' %}" alt="Logo">
+</div>
     <div class="container">
         <h1>User Contact Details</h1>
         <table>
@@ -34,5 +36,9 @@
         </table>
     </div>
 </body>
-</html>
+<div class="footer-bottom">
+    <p>© 2024 Green City is part of University of Windsor Project</p>
+    <p>Please review our updated Terms of Service</p>
+</div>
+    
 {% endblock %}
