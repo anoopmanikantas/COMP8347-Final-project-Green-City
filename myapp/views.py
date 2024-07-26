@@ -7,6 +7,10 @@ from .forms import BuildingPermitForm, SearchForm, AdminLoginForm, AdminSignupFo
     CustomUserCreationForm, ContactForm, FilterForm, AdditionalDocumentsUploadForm
 from .models import BuildingPermit, CustomUser, ContactModel
 from .respository import Repository
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from decouple import config
 
 repository = Repository()
 
@@ -112,7 +116,6 @@ def adminlogin(request):
     return render(request, 'admin/admin_login.html', {'form': form})
 
 
-
 def contact_list_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -173,7 +176,7 @@ def admin_dashboard(request):
         'total_applications': total_applications,
     }
 
-    return render(request, 'admin/admin_dashboard.html', context)
+    return render(request, 'admin/admin_dashboard.html', {'permits': permits})
 
 
 @login_required
@@ -204,8 +207,62 @@ def admin_reject_permit(request, permit_id):
     permit = get_object_or_404(BuildingPermit, pk=permit_id)
     permit.application_status = 'rejected'
     permit.save()
+    send_rejection_email(permit.usr, permit)
     messages.success(request, f'Application {permit.application_number} rejected.')
     return redirect('myapp:admin_dashboard')
+
+
+def send_rejection_email(user, permit):
+    subject = 'Your Application Has Been Rejected'
+    html_message = render_to_string('emails/rejection_email.html', {'user': user, 'permit': permit})
+    plain_message = strip_tags(html_message)
+    from_email = config('arjun.patel100701@gmail.com')
+    to = user.email
+
+    send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
+
+def send_document_resubmit_email(user, permit):
+    subject = 'Document Resubmission Required'
+    html_message = render_to_string('emails/document_resubmit_email.html', {'user': user, 'permit': permit})
+    plain_message = strip_tags(html_message)
+    from_email = config('arjun.patel100701@gmail.com')
+    to = user.email
+
+    send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_admin)
+def admin_request_document_resubmit(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id)
+    permit.application_status = 'additional'
+    permit.save()
+    send_document_resubmit_email(permit.usr, permit)
+    messages.success(request, f'Document resubmission requested for application {permit.application_number}.')
+    return redirect('myapp:admin_dashboard')
+
+
+@login_required
+def resubmit_application(request, permit_id):
+    permit = get_object_or_404(BuildingPermit, pk=permit_id, usr=request.user)
+    if request.method == 'POST':
+        form = BuildingPermitForm(request.POST, request.FILES, instance=permit)
+        if form.is_valid():
+            permit.application_status = 'submitted'
+            permit.is_resubmitted = True
+            form.save()
+            messages.success(request, 'Application resubmitted successfully.')
+            return redirect('myapp:user_dashboard')
+    else:
+        form = BuildingPermitForm(instance=permit)
+    return render(request, 'user/resubmit_application.html', {'form': form, 'permit': permit})
+
+
+@login_required
+def user_dashboard(request):
+    permits = BuildingPermit.objects.filter(usr=request.user)
+    return render(request, 'user/user_dashboard.html', {'permits': permits})
 
 
 def privacy_policy(request):

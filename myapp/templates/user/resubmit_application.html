@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resubmit Application</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'user/user_application.css' %}">
+</head>
+<body>
+    <div class="application-details">
+        <h2>Resubmit Application</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Resubmit</button>
+        </form>
+        <a href="{% url 'myapp:user_dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

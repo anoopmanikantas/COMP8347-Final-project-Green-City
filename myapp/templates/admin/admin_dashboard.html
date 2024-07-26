@@ -1,41 +1,17 @@
 {% load static %}
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_dashboard.css' %}">
 </head>
 <body>
     <h2>Admin Dashboard</h2>
-<div style="text-align: center; margin-bottom: 20px;">
-        <a href="{% url 'myapp:contact_list' %}" class="admin-btn login-btn">User Contact Details</a>
-    </div>
-    
-    <div class="search-filter-container">
-        <form class="search-form" method="get" action="{% url 'myapp:admin_dashboard' %}">
-            <input type="text" name="query" placeholder="Search by name or application number">
-            <button type="submit">Search</button>
-        </form>
-
-        <form class="filter-form" method="get" action="{% url 'myapp:admin_dashboard' %}">
-            <label for="application_number">Application Number:</label>
-            <input type="text" name="application_number" placeholder="Application Number">
-            <label for="name">Name:</label>
-            <input type="text" name="name" placeholder="Name">
-            <label for="city">City:</label>
-            <input type="text" name="city" placeholder="City">
-            <label for="status">Status:</label>
-            <select name="status">
-                <option value="">All Statuses</option>
-                <option value="submitted">Submitted</option>
-                <option value="in progress">In Progress</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-            </select>
-            <button type="submit">Filter</button>
-        </form>
-    </div>
-
-    <h3 class="total-applications">Total Applications: {{ total_applications }}</h3>
+    <form method="get" action="{% url 'myapp:admin_dashboard' %}">
+        <input type="text" name="query" placeholder="Search by name or application number">
+        <button type="submit">Search</button>
+    </form>
+    <h3 style="text-align: center;">Total Applications: {{ total_applications }}</h3>
     <table>
         <thead>
             <tr>
@@ -44,6 +20,7 @@
                 <th>Application Number</th>
                 <th>Status</th>
                 <th>Submitted Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -54,9 +31,14 @@
                     <td><a href="{% url 'myapp:admin_application_details' permit.id %}">{{ permit.application_number }}</a></td>
                     <td>{{ permit.application_status }}</td>
                     <td>{{ permit.date }}</td>
+                    <td>
+                        <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> |
+                        <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a> |
+                        <a href="{% url 'myapp:admin_request_document_resubmit' permit.id %}">Request Document Resubmit</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
-
+</html>
