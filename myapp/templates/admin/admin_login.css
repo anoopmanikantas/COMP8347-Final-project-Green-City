@@ -59,7 +59,7 @@ body {
     width: 350px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
-    margin-top: 100px; /* Adjust to ensure space below top bar */
+    margin-top: 150px; /* Adjust to ensure space below top bar */
     margin-bottom: 80px; /* Adjust to ensure space above footer */
 }
 

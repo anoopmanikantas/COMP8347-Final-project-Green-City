@@ -1,15 +1,14 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_dashboard.css' %}">
 </head>
 <body>
     <h2>Admin Dashboard</h2>
-{#    <div class="additional-links">#}
-{#        <a href="{% static 'admin/admincontactinfo.html' %}">Contact Info</a>#}
-{#    </div>#}
+<div style="text-align: center; margin-bottom: 20px;">
+        <a href="{% url 'myapp:contact_list' %}" class="admin-btn login-btn">Admin Login</a>
+    </div>
     
     <div class="search-filter-container">
         <form class="search-form" method="get" action="{% url 'myapp:admin_dashboard' %}">
@@ -60,4 +59,4 @@
         </tbody>
     </table>
 </body>
-</html>
+
