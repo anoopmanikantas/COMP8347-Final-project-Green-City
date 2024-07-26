@@ -108,8 +108,8 @@ class BuildingPermit(models.Model):
     user_id = models.PositiveIntegerField(default=1)
     usr = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     additional_document_description = models.CharField(max_length=1000, blank=True, null=True)
-    additional_document_1 = models.FileField(upload_to=user_land_records_path, blank=True, null=True)
-    additional_document_2 = models.FileField(upload_to=user_land_records_path, blank=True, null=True)
+    additional_document_1 = models.FileField(upload_to=user_additional_document_1_path, blank=True, null=True)
+    additional_document_2 = models.FileField(upload_to=user_additional_records_2_path, blank=True, null=True)
 
     def __str__(self):
         return f"Building Permit for {self.name}"
