@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
@@ -59,6 +59,16 @@ def view_all_applications(request):
                       'message': message
                   }
                   )
+
+
+def download_id_proof(request, permit_id: int):
+    permit = get_object_or_404(BuildingPermit, id=permit_id)
+    return FileResponse(permit.government_id_proof.open(), as_attachment=True)
+
+
+def download_land_record_document(request, permit_id: int):
+    permit = get_object_or_404(BuildingPermit, id=permit_id)
+    return FileResponse(permit.land_purchase_record.open(), as_attachment=True)
 
 
 def user_profile(request):

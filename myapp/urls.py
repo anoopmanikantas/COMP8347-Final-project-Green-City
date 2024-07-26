@@ -26,6 +26,8 @@ urlpatterns = [
     path('apply/', views.building_permit_application, name='building_permit_application'),
     path('application_details/<int:permit_id>/', views.application_details, name='application_details'),
     path('view_all_applications', views.view_all_applications, name='view_all_applications'),
+    path('download_id_proof/<int:permit_id>/', views.download_id_proof, name='download_id_proof'),
+    path('download_land_record/<int:permit_id>/', views.download_land_record_document, name='download_land_record_document'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
     path('contact/', views.contact_view, name='contact'),
     # Add other paths as needed
