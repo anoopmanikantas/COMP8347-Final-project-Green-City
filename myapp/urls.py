@@ -5,6 +5,8 @@ from myapp import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from myapp.views import contact_list_view
+
 app_name = 'myapp'
 
 urlpatterns = [
@@ -15,6 +17,7 @@ urlpatterns = [
     path('adminpage/', views.adminpage, name='adminpage'),
     path('adminlogin/', views.adminlogin, name='adminlogin'),
     path('adminsignup/', views.adminsignup, name='adminsignup'),
+    path('admincontactinfo/', views.contact_list_view, name='contact_list'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('admin_application_details/<int:permit_id>/', views.admin_application_details, name='admin_application_details'),
     path('admin_approve/<int:permit_id>/', views.admin_approve_permit, name='admin_approve_permit'),
@@ -28,6 +31,7 @@ urlpatterns = [
     path('view_all_applications', views.view_all_applications, name='view_all_applications'),
     path('debug/', views.debug_result_page, name='debug_result_page'),
     path('contact/', views.contact_view, name='contact'),
+
     # Add other paths as needed
 
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
