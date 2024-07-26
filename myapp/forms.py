@@ -150,8 +150,8 @@ class SearchForm(forms.Form):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'class': 'search-form',
-                'placeholder': "Enter name, application number to search...",
+                'class': 'search-form search-input',
+                'placeholder': "Enter name, application status or application reference number to search...",
             }
         ),
         label='Search Applications',
