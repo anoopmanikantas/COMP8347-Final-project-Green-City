@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Application Details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_application_details.css' %}">
+</head>
+<body>
+    <div class="application-details">
+        <h2>Application Details</h2>
+        <p><strong>User ID:</strong> {{ user.id }}</p>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Application Number:</strong> {{ permit.application_number }}</p>
+        <p><strong>Name:</strong> {{ permit.name }}</p>
+        <p><strong>City:</strong> {{ permit.city }}</p>
+        <p><strong>Status:</strong> {{ permit.application_status }}</p>
+        <p><strong>Submitted Date:</strong> {{ permit.date }}</p>
+        
+        <div class="document-link-container">
+            <p><strong>Government ID Proof:</strong></p>
+            <a href="{{ permit.government_id_proof.url }}" target="_blank" class="document-link">View ID Proof</a>
+        </div>
+        
+        <div class="document-link-container">
+            <p><strong>Land Purchase Record:</strong></p>
+            <a href="{{ permit.land_purchase_record.url }}" target="_blank" class="document-link">View Land Record</a>
+        </div>
+        
+        <div class="actions">
+            <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> 
+            <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a>
+        </div>
+
+        <a href="{% url 'myapp:admin_dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>
