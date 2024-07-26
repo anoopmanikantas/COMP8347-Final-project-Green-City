@@ -25,11 +25,17 @@
                 {% csrf_token %}
                 {{ form.username}}
                 {{ form.password }}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
                 <button type="submit" class="login-btn btn btn-success">Login</button>
 		    </form>
-            <div>
-                <p> Or Sign in with social platforms</p>
+            <div class="bottom">
+                <a href="reset_password"><i><u>Forgot Password</u></i></a>
             </div>
+            <p> Or Sign in with social platforms</p>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-google"></i></a>
