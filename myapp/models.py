@@ -116,10 +116,9 @@ class BuildingPermit(models.Model):
 
 
 class UserHistory(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     visits = models.PositiveIntegerField(default=0)
     visit_date = models.DateField(null=True)
-    visit_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"{self.user.username} visited {self.visit_count} time(s) on {self.visit_date}"
+        return f"{self.user.username} visited {self.visits} time(s) on {self.visit_date}"
