@@ -12,40 +12,52 @@
 </head>
 <body>
     <div class="container">
-        
-    <div class="profile-container">
-        <h1><strong>{{ user.first_name }}{{ user.last_name }}</strong></h1>
-        <table>
-            <tr>
-                <td><strong>Username</strong></td>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <td><strong>First Name</strong></td>
-                <td>{{ user.first_name }}</td>
-            </tr>
-            <tr>
-                <td><strong>Last Name</strong></td>
-                <td>{{ user.last_name }}</td>
-            </tr>
-            <tr>
-                <td><strong>Email ID</strong></td>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <td><strong>Phone</strong></td>
-                <td>{{ user.phone }}</td>
-            </tr>
-        </table>
-        
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <div class="logout-button">
-                <button type="submit" class="btn btn-success">Logout</button>
-            </div>
-        </form>
-    </div>
+        <div class="profile-container">
+            <h1><strong>{{ user.first_name }} {{ user.last_name }}</strong></h1>
+            <table>
+                <tr>
+                    <td><strong>Username</strong></td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td><strong>First Name</strong></td>
+                    <td>{{ user.first_name }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Last Name</strong></td>
+                    <td>{{ user.last_name }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email ID</strong></td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone</strong></td>
+                    <td>{{ user.phone }}</td>
+                </tr>
+            </table>
+            
+            <h2 class="visit-history-title">Visit History</h2>
+            <table class="visit-history-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Visit Count</th>
+                </tr>
+                {% for record in visit_records %}
+                <tr>
+                    <td>{{ record.visit_date }}</td>
+                    <td>{{ record.visit_count }}</td>
+                </tr>
+                {% endfor %}
+            </table>
 
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <div class="logout-button">
+                    <button type="submit" class="btn btn-success">Logout</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -53,7 +65,3 @@
 {% endblock %}
 </body>
 </html>
-
-
-
-
