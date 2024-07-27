@@ -9,6 +9,14 @@
     <h2>Admin Dashboard</h2>
     <form method="get" action="{% url 'myapp:admin_dashboard' %}">
         <input type="text" name="query" placeholder="Search by name or application number">
+        <select name="status">
+            <option value="">All Statuses</option>
+            <option value="submitted">Submitted</option>
+            <option value="in progress">In Progress</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="additional">Additional Document Required</option>
+        </select>
         <button type="submit">Search</button>
     </form>
     <h3 style="text-align: center;">Total Applications: {{ total_applications }}</h3>
