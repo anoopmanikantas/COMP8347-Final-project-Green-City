@@ -119,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 # LOGIN_URL = '/login/'
-LOGOUT_REDIRECT_URL = "/login/"
+LOGOUT_REDIRECT_URL = "/"
 STATIC_URL = '/myapp/templates/'
 STATIC_ROOT = '/myapp/templates/'
 STATICFILES_DIRS = [

@@ -43,7 +43,7 @@
         </div>
         <div class="signup-section">
             <h2>One of us ?</h2>
-            <button onclick="window.location.href='/login'" class="signup-btn">Login</button>
+            <button onclick="window.location.href='{% url 'myapp:login' %}'" class="signup-btn">Login</button>
             <img src="{% static 'planting2.png' %}" alt="Planting Image">
         </div>
     </div>

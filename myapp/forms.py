@@ -103,14 +103,14 @@ class BuildingPermitForm(forms.ModelForm):
     def clean_government_id_proof(self):
         government_id_proof = self.cleaned_data.get('government_id_proof', False)
         if government_id_proof:
-            if not government_id_proof.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+            if not government_id_proof.name.endswith(('.pdf', '.jpeg', '.jpg', '.png', 'JPG', 'JPEG')):
                 raise ValidationError('Govt Id Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
         return government_id_proof
 
     def clean_land_purchase_record(self):
         land_purchase_record = self.cleaned_data.get('land_purchase_record', False)
         if land_purchase_record:
-            if not land_purchase_record.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+            if not land_purchase_record.name.endswith(('.pdf', '.jpeg', '.jpg', '.png', 'JPG', 'JPEG')):
                 raise ValidationError(' Land Record Purchase Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
         return land_purchase_record
 
@@ -172,14 +172,14 @@ class AdditionalDocumentsUploadForm(forms.ModelForm):
     def clean_additional_document_1(self):
         additional_document = self.cleaned_data.get('additional_document_1', False)
         if additional_document:
-            if not additional_document.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+            if not additional_document.name.endswith(('.pdf', '.jpeg', '.jpg', '.png', 'JPG', 'JPEG')):
                 raise ValidationError('Govt Id Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
         return additional_document
 
     def clean_land_purchase_record(self):
         additional_document = self.cleaned_data.get('additional_document_2', False)
         if additional_document:
-            if not additional_document.name.endswith(('.pdf', '.jpeg', '.jpg', '.png')):
+            if not additional_document.name.endswith(('.pdf', '.jpeg', '.jpg', '.png', 'JPG', 'JPEG')):
                 raise ValidationError(' Land Record Purchase Invalid file format. Allowed formats: .pdf, .jpeg, .jpg, .png')
         return additional_document
 

@@ -339,7 +339,7 @@ def building_permit_application(request):
             permit.usr = request.user
             permit.trees_required = calculate_trees(permit.area, permit.floors)
             # TODO: Comment The Line Below Before Pushing The Code
-            # permit.application_status = 'additional'
+            permit.application_status = 'additional'
             permit.save()
             return render(
                 request,
