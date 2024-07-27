@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import uuid
 
+
 # from myapp import forms
 # class AdminUser(AbstractUser):
 #     contact_number = models.CharField(max_length=50, blank=True, null=True)
@@ -70,7 +71,6 @@ def user_additional_records_2_path(instance, filename):
 
 
 class BuildingPermit(models.Model):
-
     AREA_CHOICES = [
         ('0-0.3', '0<0.3'),
         ('0.3-0.5', '0.3<0.5'),
@@ -119,3 +119,7 @@ class UserHistory(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     visits = models.PositiveIntegerField(default=0)
     visit_date = models.DateField(null=True)
+    visit_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.username} visited {self.visit_count} time(s) on {self.visit_date}"

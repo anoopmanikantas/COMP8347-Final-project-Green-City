@@ -22,7 +22,10 @@ def home(request):
     today = timezone.now().date()
 
     profile, _ = UserHistory.objects.get_or_create(user=request.user, visit_date=today)
-    profile.visits = 1
+    if not _:
+        profile.visit_count += 1
+    else:
+        profile.visit_count = 1
     profile.save()
 
     response = render(
@@ -119,6 +122,8 @@ def adminlogin(request):
                 return redirect('myapp:admin_dashboard')
             else:
                 messages.error(request, 'Invalid username or password for admin.')
+        else:
+            messages.error(request, 'Please correct the error below.')
     else:
         form = AdminLoginForm()
     return render(request, 'admin/admin_login.html', {'form': form})
@@ -146,6 +151,8 @@ def adminsignup(request):
             user.save()
             messages.success(request, 'Admin account created successfully!')
             return redirect('myapp:adminlogin')
+        else:
+            messages.error(request, 'Please correct the error below.')
     else:
         form = AdminSignupForm()
     return render(request, 'admin/admin_signup.html', {'form': form})
@@ -271,6 +278,24 @@ def resubmit_application(request, permit_id):
 def user_dashboard(request):
     permits = BuildingPermit.objects.filter(usr=request.user)
     return render(request, 'user/user_dashboard.html', {'permits': permits})
+
+
+@login_required
+def log_visit(request):
+    user = request.user
+    history, created = UserHistory.objects.get_or_create(user=user)
+    history.visits += 1
+    history.visit_date = timezone.now().date()
+    history.visit_time = timezone.now().time()
+    history.save()
+    return redirect('myapp:user_profile')
+
+
+@login_required
+def user_profile(request):
+    user = request.user
+    visit_records = UserHistory.objects.filter(user=user).order_by('-visit_date')
+    return render(request, 'user_profile/user_profile.html', {'user': user, 'visit_records': visit_records})
 
 
 def privacy_policy(request):
