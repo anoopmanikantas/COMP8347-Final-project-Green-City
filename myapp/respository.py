@@ -35,15 +35,15 @@ class Repository:
         submitted_applications = BuildingPermit.objects.filter(
             user_id=self.user_id
         ).count()
-        pending_applications = BuildingPermit.objects.filter(
-            application_status='in progress',
+        rejected_applications = BuildingPermit.objects.filter(
+            application_status='rejected',
             user_id=self.user_id
         ).count()
         approved_applications = BuildingPermit.objects.filter(
             application_status='approved',
             user_id=self.user_id
         ).count()
-        return submitted_applications, pending_applications, approved_applications
+        return submitted_applications, rejected_applications, approved_applications
 
     class ApplicationDetails:
         def __init__(self, user_id):
@@ -56,7 +56,7 @@ class Repository:
 
         def _populate_data(self):
             repository = Repository(user_id=self.user_id)
-            self.submitted, self.pending, self.approved = repository.get_count_of_building_permits()
+            self.submitted, self.rejected, self.approved = repository.get_count_of_building_permits()
 
     def get_application_details(self) -> ApplicationDetails:
         return self.ApplicationDetails(self.user_id)

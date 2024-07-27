@@ -24,7 +24,7 @@
                                 <td>{{ result.date }}</td>
                                 <td>{{ result.name }}</td>
                                 <td>{{ result.application_number }}</td> {# TODO: This must be replaced with result property application number #}
-                                <td>{{ result.application_status }}</td> {# TODO: This must be replaced with result property application status #}
+                                <td>{{ result.get_application_status_display }}</td> {# TODO: This must be replaced with result property application status #}
                             </tr>
                         {% endfor %}
                     </table>

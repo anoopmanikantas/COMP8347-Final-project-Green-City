@@ -1,6 +1,7 @@
 body, html {
     height: 100%;
     width: 100%;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
 }
 
 .cont {
@@ -43,6 +44,8 @@ body, html {
 }
 
 .login-section {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-items: center   ;
@@ -83,7 +86,7 @@ body, html {
 .form-container input[type="email"],
 .form-container input[type="phone"]{
     margin-top: 20px;
-    margin-left: 155px;
+    /*margin-left: 155px;*/
     padding: 5px;
     border: none;
     width: 300px;
@@ -97,6 +100,15 @@ body, html {
     font-size: 16px;
     padding: 2%;
 }
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/*.form-container button {*/
+/*    margin-left: 50px;*/
+/*}*/
 
 .alert{
     font-size: 10px;

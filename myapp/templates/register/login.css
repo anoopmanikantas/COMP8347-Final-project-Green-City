@@ -4,6 +4,7 @@ body, html {
     margin: 0;
     justify-content: center;
     align-items: center;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
 }
 
 .cont {
@@ -90,10 +91,10 @@ body, html {
 .form-container input[type="text"],
 .form-container input[type="password"]{
     margin-top: 20px;
-    margin-left: 50px;
+    /*margin-left: 50px;*/
     padding: 5px;
     border: none;
-    width: 300px;
+    /*width: 300px;*/
     background-color: #ededed;
     border-radius: 15px;
 }
@@ -103,6 +104,16 @@ body, html {
     color: grey;
     font-size: 16px;
     padding: 2%;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-container button {
+    /*margin-left: 50px;*/
 }
 
 .alert{

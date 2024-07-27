@@ -6,6 +6,7 @@
 
 .additional-form p {
     font-weight: bold;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
 }
 
 .additional-form {
@@ -279,6 +280,10 @@ form button:hover {
     padding: 20px;
     overflow-x: hidden;
     width: 95%;
+}
+
+.submit {
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
 }
 
 .application-details-container {

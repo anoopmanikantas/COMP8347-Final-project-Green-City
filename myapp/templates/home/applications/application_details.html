@@ -69,22 +69,13 @@
                     </div>
                 </div>
                 <div class="column">
-
                     {% if form %}
-                        <div class="row">
-                            <div class="cell-label">Additional Document: </div>
-                            <div class="cell-data">{{ permit.additional_document_description }}</div>
-                        </div>
                         <form class="additional-form" action="{% url 'myapp:application_details' permit.id%}" method='POST' enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <input class="submit" type="submit" name="upload" value="Upload">
                         </form>
                     {% elif is_additional_document_1_available %}
-                        <div class="row">
-                                <div class="cell-label">Additional Document Desc:</div>
-                                <div class="cell-data">{{ permit.additional_document_description }}</div>
-                            </div>
                         <div class="row">
                             <div class="cell-label">Additional Document 1:</div>
                             <div class="cell-data"><a href="{% url 'myapp:download_additional_document_1' permit.id%}">Download</a></div>
