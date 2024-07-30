@@ -20,12 +20,15 @@ repository = Repository()
 def home(request):
     repository.user_id = request.user.id
     today = timezone.now().date()
-
+    request.COOKIES.setdefault(f'visited_user_{request.user.id}_{request.user.username}', 1)
+    visit = request.COOKIES[f'visited_user_{request.user.id}_{request.user.username}']
     profile, _ = UserHistory.objects.get_or_create(user=request.user, visit_date=today)
     if not _:
-        profile.visits += 1
+        visit = int(visit) + 1
+        profile.visits = visit
     else:
-        profile.visits = 1
+        visit = 1
+        profile.visits = visit
     profile.save()
 
     response = render(
@@ -35,7 +38,7 @@ def home(request):
             'applications': repository.get_application_details()
         }
     )
-    response.set_cookie(f'visited_user_{request.user.id}_{request.user.username}', 'true')
+    response.set_cookie(f'visited_user_{request.user.id}_{request.user.username}', visit)
     return response
 
 
