@@ -344,18 +344,21 @@ def signup(request):
 
 
 def calculate_trees(area, floors):
+    # Assuming that the gap between each tree is 25ft from our research we found that
+    # THe number of trees that can be planted
+    value_per_acre = 70
     area_map = {
-        '0-0.3': 1,
-        '0.3-0.5': 2,
-        '0.5-0.7': 3,
-        '0.7+': 4,
+        '0-0.3': value_per_acre * 0.3,
+        '0.3-0.5': value_per_acre * 0.4,
+        '0.5-0.7': value_per_acre * 0.6,
+        '0.7+': value_per_acre,
     }
     floors_map = {
         '1-3': 1,
         '4-6': 2,
         '7+': 3,
     }
-    return area_map[area] * floors_map[floors] * 3
+    return area_map[area] * floors_map[floors]
 
 
 def building_permit_application(request):
