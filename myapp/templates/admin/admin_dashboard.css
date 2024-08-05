@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
@@ -66,4 +66,25 @@ table a {
 
 table a:hover {
     text-decoration: underline;
+}
+
+
+.contact-us-button {
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 4px; /* adjust border radius here */
+    background-color: #28a745; /* adjust color here */
+    color: white;
+    text-align: center;
+    text-decoration: none; /* removes underline */
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-bottom: 16px;
+    margin-right: 16px;
+}
+
+.contact-us-button:hover{
+    background-color: darkgreen; /* adjust hover color here */
+    color: white;
 }

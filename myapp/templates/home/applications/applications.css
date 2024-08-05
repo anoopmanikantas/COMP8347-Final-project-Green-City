@@ -137,7 +137,7 @@ form button:hover {
     width: 100%;
 }
 
-.card2 .create-new-application-button, .view-all-applications-button {
+.download-button, .card2 .create-new-application-button, .view-all-applications-button {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 15px; /* adjust border radius here */
@@ -152,7 +152,12 @@ form button:hover {
     margin-right: 16px;
 }
 
-.create-new-application-button:hover, .view-all-applications-button:hover {
+.spacing {
+    height: 16px;
+    width: 100%;
+}
+
+.download-button:hover, .create-new-application-button:hover, .view-all-applications-button:hover {
     background-color: darkgreen; /* adjust hover color here */
     color: white;
 }

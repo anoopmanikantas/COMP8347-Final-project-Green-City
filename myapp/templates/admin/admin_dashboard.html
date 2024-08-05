@@ -6,47 +6,51 @@
     <link rel="stylesheet" type="text/css" href="{% static 'admin/admin_dashboard.css' %}">
 </head>
 <body>
-    <h2>Admin Dashboard</h2>
-    <form method="get" action="{% url 'myapp:admin_dashboard' %}">
-        <input type="text" name="query" placeholder="Search by name or application number">
-        <select name="status">
-            <option value="">All Statuses</option>
-            <option value="submitted">Submitted</option>
-            <option value="in progress">In Progress</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-            <option value="additional">Additional Document Required</option>
-        </select>
-        <button type="submit">Search</button>
-    </form>
-    <h3 style="text-align: center;">Total Applications: {{ total_applications }}</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Application Number</th>
-                <th>Status</th>
-                <th>Submitted Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for permit in permits %}
-                <tr>
-                    <td>{{ permit.usr.id }}</td>
-                    <td>{{ permit.usr.username }}</td>
-                    <td><a href="{% url 'myapp:admin_application_details' permit.id %}">{{ permit.application_number }}</a></td>
-                    <td>{{ permit.application_status }}</td>
-                    <td>{{ permit.date }}</td>
-                    <td>
-                        <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> |
-                        <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a> |
-                        <a href="{% url 'myapp:admin_request_document_resubmit' permit.id %}">Request Document Resubmit</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<h2>Admin Dashboard</h2>
+<form method="get" action="{% url 'myapp:admin_dashboard' %}">
+    <input type="text" name="query" placeholder="Search by name or application number">
+    <select name="status">
+        <option value="">All Statuses</option>
+        <option value="submitted">Submitted</option>
+        <option value="in progress">In Progress</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+        <option value="additional">Additional Document Required</option>
+    </select>
+    <div class="buttons">
+        <button type="submit">Search</button>     
+        <a href="{% url 'myapp:contact_list' %}" class="contact-us-button">Contact Us List</a>
+    </div>
+    
+</form>
+<h3 style="text-align: center;">Total Applications: {{ total_applications }}</h3>
+<table>
+    <thead>
+    <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Application Number</th>
+        <th>Status</th>
+        <th>Submitted Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for permit in permits %}
+        <tr>
+            <td>{{ permit.usr.id }}</td>
+            <td>{{ permit.usr.username }}</td>
+            <td><a href="{% url 'myapp:admin_application_details' permit.id %}">{{ permit.application_number }}</a></td>
+            <td>{{ permit.get_application_status_display }}</td>
+            <td>{{ permit.date }}</td>
+            <td>
+                <a href="{% url 'myapp:admin_approve_permit' permit.id %}">Approve</a> |
+                <a href="{% url 'myapp:admin_reject_permit' permit.id %}">Reject</a> |
+                <a href="{% url 'myapp:admin_request_document_resubmit' permit.id %}">Request Document Resubmit</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>

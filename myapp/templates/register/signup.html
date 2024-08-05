@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup Page</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'register/signup.css' %}">
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login/Signup Page</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'register/signup.css' %}">
+    </head>
+    <body>
     <div class="cont">
-        
+
         <div class="login-section">
             <h2>Sign Up</h2>
             <form class="form-container" method="POST">
@@ -25,21 +25,27 @@
                 {{ form.phone}}
                 {{ form.password1}}
                 {{ form.password2}}
-                {% if form.field_errors %}
+                {% if form.errors %}
                     <div class="alert alert-danger" role="alert">
-                        {{ form.field_errors }}
+                        {% for field, error in form.errors.items %}
+                            {% if error %}
+                                {{ error }}
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 {% endif %}
                 <button type="submit" class="login-btn btn btn-success">Sign Up</button>
-		    </form>
+            </form>
             <div>
                 <p> Or Sign in with social platforms</p>
             </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-google"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.google.com/"><i class="fab fa-google"></i></a>
+                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
             </div>
+
+
         </div>
         <div class="signup-section">
             <h2>One of us ?</h2>
@@ -47,6 +53,6 @@
             <img src="{% static 'planting2.png' %}" alt="Planting Image">
         </div>
     </div>
-</body>
-</html>
+    </body>
+    </html>
 {% endblock %}

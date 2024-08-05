@@ -4,27 +4,24 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>{% block title %}My Website{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'register/base-auth.css' %}">
     <link rel="stylesheet" href="{% static 'footer.css' %}">
     <link rel="stylesheet" href="{% static 'contact.css' %}">
 </head>
 <body>
     <div class="navbar">
         <div class="nav-links">
-            <a href="{% url 'myapp:home' %}">
+            <a href="#">
                 <img class="nav-img" src="{% static 'Logo-small.png' %}" alt="Home">
             </a>
             <a href="{% url 'myapp:about' %}">About Us</a>
             <a href="{% url 'myapp:contact' %}">Contact Us</a>
         </div>
-        <a href="{% url 'myapp:user_profile' %}" class="profile">
-            <img src="{% static 'profile.png' %}" alt="Profile">
-        </a>
     </div>
 
     <div class="content">
         {% block content %}
-        
+
         {% endblock %}
     </div>
 
@@ -70,4 +67,3 @@
     </div>
 </body>
 </html>
- 

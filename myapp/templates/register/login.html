@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup Page</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'register/login.css' %}">
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login/Signup Page</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'register/login.css' %}">
+    </head>
+    <body>
     <div class="cont">
         <div class="signup-section">
             <h2>New here ?</h2>
-            <p>We at Leaf Now organize tree plantations projects across several cities. Also we have marketplace to buy, sell or donate online vegetable seeds, fruit seeds, grow bags and other home/terrace gardening products.</p>
+            <p>Green City promotes environmental preservation through research, education, and advocacy. Green Leaf organizes tree plantation projects in various cities, focusing on local biodiversity. We ensure communities benefit from restored green cover and resources like fruits and flowers.</p>
             <button onclick="window.location.href='/signup'" class="signup-btn">SIGN UP</button>
             <img src="{% static 'planting.png' %}" alt="Planting Image">
         </div>
@@ -31,18 +31,18 @@
                     </div>
                 {% endif %}
                 <button type="submit" class="login-btn btn btn-success">Login</button>
-		    </form>
+            </form>
             <div class="bottom">
                 <a href="reset_password"><i><u>Forgot Password</u></i></a>
             </div>
             <p> Or Sign in with social platforms</p>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-google"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.google.com/"><i class="fab fa-google"></i></a>
+                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
-</body>
+    </body>
 {% endblock %}
 </html>

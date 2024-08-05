@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/'
 
 WSGI_APPLICATION = 'GreenCity.wsgi.application'
 
@@ -118,7 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# LOGIN_URL = '/login/'
+# LOGIN_URL = '/'
 LOGOUT_REDIRECT_URL = "/"
 STATIC_URL = '/myapp/templates/'
 STATIC_ROOT = '/myapp/templates/'

@@ -1,9 +1,8 @@
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, "Segoe UI", system-ui, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
-    padding: 20px;
 }
 
 /* User Profile header */
@@ -72,7 +71,7 @@ table tr:hover {
 }
 
 .logout-button button {
-    width: 100%;
+    width: 50%;
 }
 
 /* Container */

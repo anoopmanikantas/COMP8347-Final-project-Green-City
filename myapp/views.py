@@ -123,10 +123,10 @@ def adminlogin(request):
             if user is not None and user.is_admin:
                 login(request, user)
                 return redirect('myapp:admin_dashboard')
-            else:
-                messages.error(request, 'Invalid username or password for admin.')
+            # else:
+            #     messages.error(request, 'Invalid username or password for admin.')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'Please Sign Up or check the username and password')
     else:
         form = AdminLoginForm()
     return render(request, 'admin/admin_login.html', {'form': form})
@@ -154,8 +154,8 @@ def adminsignup(request):
             user.save()
             messages.success(request, 'Admin account created successfully!')
             return redirect('myapp:adminlogin')
-        else:
-            messages.error(request, 'Please correct the error below.')
+        # else:
+        #     messages.error(request, 'Please correct the error below.')
     else:
         form = AdminSignupForm()
     return render(request, 'admin/admin_signup.html', {'form': form})
@@ -318,7 +318,7 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f'You are now logged in as {username}.')
+                # messages.info(request, f'You are now logged in as {username}.')
                 return redirect('myapp:home')
             else:
                 messages.error(request, 'Invalid username or password.')
@@ -328,7 +328,6 @@ def user_login(request):
         form = CustomAuthenticationForm()
     return render(request, 'register/login.html', {'form': form})
 
-
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -336,9 +335,9 @@ def signup(request):
             form.save()
             # messages.success(request, 'Account created successfully!')
             return redirect('myapp:login')
-        else:
-            error_messages = form.errors.as_json()
-            return HttpResponse(f'Please correct the error below: {error_messages}')
+        # else:
+        #     error_messages = form.errors.as_json()
+        #     messages.error(request, f'Please correct the error below: {error_messages}')
     else:
         form = CustomUserCreationForm()
     return render(request, 'register/signup.html', {'form': form})
