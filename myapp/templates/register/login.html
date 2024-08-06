@@ -20,6 +20,7 @@
             <img src="{% static 'planting.png' %}" alt="Planting Image">
         </div>
         <div class="login-section">
+        <div class="padding">
             <h2>Sign In</h2>
             <form class="form-container" method="POST">
                 {% csrf_token %}
@@ -30,7 +31,7 @@
                         {{ form.non_field_errors }}
                     </div>
                 {% endif %}
-                <button type="submit" class="login-btn btn btn-success">Login</button>
+                <button type="submit" class="login-btn btn-success">Login</button>
             </form>
             <div class="bottom">
                 <a href="reset_password"><i><u>Forgot Password</u></i></a>
@@ -41,6 +42,7 @@
                 <a href="https://www.google.com/"><i class="fab fa-google"></i></a>
                 <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
             </div>
+        </div>
         </div>
     </div>
     </body>
